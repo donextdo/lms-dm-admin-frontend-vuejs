@@ -1,2 +1,5 @@
 # lms-frontend
-vue js, veutify
+vue js + vuetify
+ -axios
+ -vuex
+ -router js
