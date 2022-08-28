@@ -1,9 +1,10 @@
 <template>
   <div class="dashboard">
     <Sidebar/>
-    <Navbar :title="title" :name="name" :profile="profile"/>
+    <Navbar :title="this.$route.name" :name="name" :profile="profile"/>
     <section class="hero">
-        <h1>Router goes here</h1>
+        
+        <router-view />
 
     </section>
   </div>

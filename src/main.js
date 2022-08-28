@@ -5,6 +5,12 @@ import VueRouter from 'vue-router';
 import RegisterView from "./views/student/RegisterView.vue"
 import AdminSignInView from "./views/admin/AdminSignInView.vue"
 import DashBoardView from "./views/admin/DashBoardView.vue"
+import DashBoardPage from "./views/admin/DashBoardPage.vue"
+import ClassesPage from "./views/admin/ClassesPage.vue"
+import StudentsPage from "./views/admin/StudentsPage.vue"
+import TutorsPage from "./views/admin/TutorsPage.vue"
+import PaymentsPage from "./views/admin/PaymentsPage.vue"
+import SettingsPage from "./views/admin/SettingsPage.vue"
 
 
 Vue.use(VueRouter);
@@ -31,7 +37,39 @@ const router = new VueRouter({
     {
       path: '/dashboard',
       component: DashBoardView,
-      name: 'Dashboard'
+      name: 'DashboardView',
+      children: [
+        {
+          path: '/',
+          component: DashBoardPage,
+          name: 'Dashboard'
+        },
+        {
+          path: '/classes',
+          component: ClassesPage,
+          name: 'Classes'
+        },
+        {
+          path: '/students',
+          component: StudentsPage,
+          name: 'Students'
+        },
+        {
+          path: '/tutors',
+          component: TutorsPage,
+          name: 'Tutors'
+        },
+        {
+          path: '/payments',
+          component: PaymentsPage,
+          name: 'Payments'
+        },
+        {
+          path: '/settings',
+          component: SettingsPage,
+          name: 'Settings'
+        },
+      ]
     }
   ]
 });
