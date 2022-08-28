@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app">
+  <v-app id="app" class="app">
     <router-view></router-view>
   </v-app>
 </template>
@@ -21,6 +21,21 @@ export default {
 </script>
 
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@300;400;600;700&display=swap');
+
+html {
+  overflow-y: auto !important
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box
+}
+
 .section-title {
   font-family: "Rubik";
   font-style: normal;
@@ -44,6 +59,11 @@ export default {
   font-weight: 600 !important;
   font-size: 16px;
   letter-spacing: 0.8px;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
 }
 
 @media (min-width: 1440px) {
