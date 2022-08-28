@@ -2,8 +2,8 @@ import Vue from 'vue';
 import App from './App.vue';
 import vuetify from './plugins/vuetify';
 import VueRouter from 'vue-router';
-import LoginScreen from "./components/LoginScreen.vue";
-import RegisterView from "./views/RegisterView.vue"
+import RegisterView from "./views/student/RegisterView.vue"
+import AdminSignInView from "./views/admin/AdminSignInView.vue"
 
 
 Vue.use(VueRouter);
@@ -14,13 +14,18 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      component: LoginScreen,
-      name: 'LoginScreen',
+      component: AdminSignInView,
+      name: 'AdminSignIn',
     }, 
     {
       path: '/register',
       component: RegisterView,
       name: 'RegisterScreen'
+    },
+    {
+      path: '/admin',
+      component: AdminSignInView,
+      name: 'AdminSignIn'
     }
   ]
 });

@@ -17,8 +17,8 @@
 
 <script>
 
-import ImageGrid from '../components/ImageGrid.vue';
-import RegisterForm from '../components/RegisterForm.vue'
+import ImageGrid from '../../components/shared/ImageGrid.vue';
+import RegisterForm from '../../components/student/RegisterForm.vue'
 
 export default {
     name: "register-vue",

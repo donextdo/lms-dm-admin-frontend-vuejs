@@ -1,26 +1,26 @@
 <template>
   <div class="grid">
     <div class="image">
-        <img src="../assets/image-grid/Rectangle 1-1.png" alt="">
+        <img src="../../assets/image-grid/Rectangle 1-1.png" alt="">
     </div>
     <div class="image">
-        <img src="../assets/image-grid/Asset 8.png" alt="">
+        <img src="../../assets/image-grid/Asset 8.png" alt="">
     </div>
     <div class="image">
-        <img src="../assets/image-grid/Asset 6.png" alt="">
+        <img src="../../assets/image-grid/Asset 6.png" alt="">
     </div>
     <div class="image">
     </div>
     <div class="image">
     </div>
     <div class="image">
-        <img src="../assets/image-grid/Asset 5.png" alt="">
+        <img src="../../assets/image-grid/Asset 5.png" alt="">
     </div>
     <div class="image">
-        <img src="../assets/image-grid/Asset 9.png" alt="">
+        <img src="../../assets/image-grid/Asset 9.png" alt="">
     </div>
     <div class="image">
-        <img src="../assets/image-grid/Rectangle 1-3.png" alt="">
+        <img src="../../assets/image-grid/Rectangle 1-3.png" alt="">
     </div>
   </div>
 </template>
