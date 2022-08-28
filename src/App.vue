@@ -25,7 +25,11 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@300;400;600;700&display=swap');
 
 html {
-  overflow-y: auto !important
+  overflow-y: auto !important;
+}
+
+body {
+  font-family: 'Source Serif Pro', serif;
 }
 
 *,
@@ -34,6 +38,17 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #000
 }
 
 .section-title {

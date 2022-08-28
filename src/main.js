@@ -4,6 +4,7 @@ import vuetify from './plugins/vuetify';
 import VueRouter from 'vue-router';
 import RegisterView from "./views/student/RegisterView.vue"
 import AdminSignInView from "./views/admin/AdminSignInView.vue"
+import DashBoardView from "./views/admin/DashBoardView.vue"
 
 
 Vue.use(VueRouter);
@@ -26,6 +27,11 @@ const router = new VueRouter({
       path: '/admin',
       component: AdminSignInView,
       name: 'AdminSignIn'
+    },
+    {
+      path: '/dashboard',
+      component: DashBoardView,
+      name: 'Dashboard'
     }
   ]
 });
