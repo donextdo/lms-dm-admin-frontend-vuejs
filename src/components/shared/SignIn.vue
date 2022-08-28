@@ -1,111 +1,165 @@
 <template>
-  <v-card height="60vh" width="28vw" flat class="card" color="transparent">
-    <div class="rectangle"></div>
+  <v-card :height="laptop ? '460px' : '634px'" :width="laptop ? '380px' : '510px'" flat class="d-flex flex-column align-center" color="transparent">
+    <div class="square"></div>
+    <h2 class="heading">{{ title }}</h2>
 
-    <h2 class="title">{{ title }}</h2>
+    <div class="d-flex flex-column justify-center align-left form-control">
+      <label for="" class="label">Email</label>
+      <v-text-field loading="false" background-color="#fff" :height="laptop ? '35px' : '45px'" hide-details class="input"></v-text-field>
+    </div>
 
-    <!-- <v-form> -->
-    <v-row>
-      <v-col class="d-flex" cols="12" sm="12">
-        <div class="form-control">
-          <label for="">Email</label>
-          <v-text-field
-            loading="false"
-            background-color="#fff"
-            class="input"
-          ></v-text-field>
-        </div>
-      </v-col>
-    </v-row>
+    <div class="d-flex flex-column justify-center align-left form-control">
+      <label for="" class="label">Password</label>
+      <v-text-field type="password" loading="false" background-color="#fff" :height="laptop ? '35px' : '45px'" hide-details="" class="input"></v-text-field>
+    </div>
 
-    <v-row >
-      <v-col class="d-flex" cols="12" sm="12">
-        <div class="form-control">
-          <label for="">Password</label>
-          <v-text-field
-            loading="false"
-            background-color="#fff"
-            type="password"
-            class="input"
-          ></v-text-field>
-        </div>
-      </v-col>
-      <v-checkbox
-      small
-      v-model="checkbox"
-      label="Remember me"
-      color="warning"
-      hide-details
-    ></v-checkbox>
+    <div class="d-flex justify-space-between align-center options-row">
+       <v-checkbox
+        v-model="checkbox"
+        color="warning"
+        label="Remember me"
+        hide-details
+        class="mt-0"
+      ></v-checkbox>
 
-    <v-span class="forgot">Forgot password?</v-span>
-    </v-row>
+      <v-span class="forgot">Forgot password?</v-span>
+    </div>
 
-    <v-btn width="400px" color="#ffa500" flat>Sign In</v-btn>
-    
+    <v-btn :width="laptop ? '380px' : '510px'" color="#ffa500" :height="laptop ? '45px' : '62px'" elevation="0" class="btn rounded-lg">Sign In</v-btn>
 
-    <!-- </v-form> -->
   </v-card>
 </template>
 
 <script>
+
 export default {
   name: "singin-vue",
 
   props: ["title"],
+
+  data() {
+      return {
+          laptop: null
+      }
+  },
+
+  created() {
+      window.addEventListener('resize', this.checkScreen)
+      this.checkScreen()
+  },
+
+  methods: {
+      checkScreen() {
+          this.windowWidth = window.innerWidth;
+
+          if(this.windowWidth < 1400) {
+              this.laptop = true
+              return
+          }
+          else {
+              this.laptop = false
+          }
+      }
+  }
 };
+
 </script>
 
-<style>
-.card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+<style scoped>
+  .square {
+    height: 117px;
+    width: 117px;
+    background-color: #FFA500;
+  }
 
-.title {
-  margin-top: 0.8rem;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 500;
-}
+  .heading {
+    font-size: 32px;
+    line-height: 32px;
+    margin-top: 31px;
+  }
 
-.rectangle {
-  background-color: #ffa500;
-  height: 80px;
-  width: 80px;
-}
+  .v-text-field {
+    width: 510px;
+  }
 
-.input {
-  font-size: 16px;  
-}
-.v-text-field {
-  width: 400px;
-}
+  .form-control {
+    margin-top: 65px;
+  }
 
-.row {
-  flex: initial;
-}
+  .form-control + .form-control {
+    margin-top: 31px;
+  }
 
-.row + .row {
-  margin-top: 0;
-}
+  .label {
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: 500;
+  }
 
-.v-input--selection-controls {
-    margin-top: -25px;
-    margin-left: 9px;
-}
+  .options-row {
+    width: 100%;
+    margin-top: 22px;
+  }
 
-.forgot {
-  color: #ffa500;
-  margin-top: -22px;
-  margin-right: 10px;
-  font-size: 12px;
-  font-weight: bold;
-}
+  .btn {
+    margin-top: auto;
+    font-size: 18px !important;
+    text-transform: capitalize;
+    font-weight: bold;
+  }
 
-.v-btn {
-  margin-top: 2rem;
-}
+  .forgot {
+    color: #FFA500;
+    font-weight: 500;
+  }
+
+  .input {
+    font-size: 20px;
+  }
+
+  @media (max-width: 1400px) {
+    .square {
+      height: 70px;
+      width: 70px;
+    }
+
+    .heading {
+      font-size: 22px;
+      line-height: 24px;
+      margin-top: 23px;
+    }
+
+    .v-text-field {
+      width: 380px;
+    }
+
+    .form-control {
+      margin-top: 35px;
+    }
+
+    .form-control + .form-control {
+      margin-top: 20px;
+    }
+
+    .label {
+      font-size: 16px;
+      margin-bottom: 0px;
+      font-weight: 500;
+    }
+
+    .options-row {
+      width: 100%;
+      margin-top: 12px;
+    }
+
+    .btn {
+      font-size: 16px !important;
+    }
+
+    .input {
+      font-size: 15px;
+    }
+
+  }
 
 </style>
