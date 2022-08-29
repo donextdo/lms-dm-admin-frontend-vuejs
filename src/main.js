@@ -11,6 +11,8 @@ import StudentsPage from "./views/admin/StudentsPage.vue"
 import TutorsPage from "./views/admin/TutorsPage.vue"
 import PaymentsPage from "./views/admin/PaymentsPage.vue"
 import SettingsPage from "./views/admin/SettingsPage.vue"
+import Dancing from "./components/admin/classes/Dancing.vue"
+import Music from "./components/admin/classes/Music.vue"
 
 
 Vue.use(VueRouter);
@@ -29,15 +31,18 @@ const router = new VueRouter({
       component: RegisterView,
       name: 'RegisterScreen'
     },
-    {
-      path: '/admin',
-      component: AdminSignInView,
-      name: 'AdminSignIn'
-    },
+    // {
+    //   path: '/admin',
+    //   component: AdminSignInView,
+    //   name: 'AdminSignIn'
+    // },
     {
       path: '/dashboard',
       component: DashBoardView,
       name: 'DashboardView',
+      redirect: {
+        name: 'Dashboard'
+      },
       children: [
         {
           path: '/',
@@ -47,7 +52,22 @@ const router = new VueRouter({
         {
           path: '/classes',
           component: ClassesPage,
-          name: 'Classes'
+          name: 'Classes',
+          redirect: {
+            name: 'Music'
+          },
+          children: [
+            {
+              path: '/',
+              component: Music,
+              name: 'Music'
+            },
+            {
+              path: '/dancing',
+              component: Dancing,
+              name: 'Dancing'
+            }
+          ]
         },
         {
           path: '/students',

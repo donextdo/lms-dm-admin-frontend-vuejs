@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <Sidebar/>
-    <Navbar :title="this.$route.name" :name="name" :profile="profile"/>
+    <Navbar :title="this.$route.matched[1].name" :name="name" :profile="profile"/>
     <section class="hero">
         
         <router-view />
