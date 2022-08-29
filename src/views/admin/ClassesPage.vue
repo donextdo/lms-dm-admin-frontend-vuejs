@@ -147,5 +147,10 @@ export default {
       font-size: 14px;
       line-height: 24px;
     }
+
+    .hero {
+      padding-top: 40px;
+      padding-left: 60px;
+    }
   }
 </style>
