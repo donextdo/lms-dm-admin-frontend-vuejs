@@ -1,13 +1,18 @@
 <template>
-  <h1>Dancing</h1>
+  <div class="music d-flex flex-column">
+    <CardRow />
+  </div>
 </template>
 
 <script>
+import CardRow from "@/components/shared/CardRow.vue";
 export default {
-    name: 'dancing-vue'
-}
+  name: "dancing-vue",
+
+  components: {
+    CardRow,
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
