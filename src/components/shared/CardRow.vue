@@ -1,15 +1,11 @@
 <template>
-  <v-card height="100px" width="100%"></v-card>
+      <v-card height="70px" width="100%"></v-card>
 </template>
 
 <script>
-
 export default {
-    name: 'cardrow-vue'
-}
-
+  name: "cardrow-vue",
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
