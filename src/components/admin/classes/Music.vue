@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import CardRow from '@/components/shared/CardRow.vue';
+import CardRow from "@/components/shared/CardRow.vue";
 
 export default {
-    name: 'music-vue',
+  name: "music-vue",
 
     components: {
       CardRow
@@ -55,5 +55,8 @@ export default {
       gap: 25px;
     }
   }
-
+.music {
+  gap: 100px;
+}
 </style>
+

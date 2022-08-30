@@ -1,6 +1,8 @@
 <template>
   <div class="dancing d-flex flex-column">
     <CardRow v-for="(item, index) in dancingClasses" :item="item" :key="index" />
+  <div class="music d-flex flex-column">
+    <CardRow />
   </div>
 </template>
 
@@ -65,5 +67,5 @@ export default {
       gap: 25px;
     }
   }
+</script>
 
-</style>
