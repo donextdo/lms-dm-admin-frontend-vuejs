@@ -1,62 +1,42 @@
 <template>
   <div class="classes">
     <header class="header d-flex align-end justify-space-between">
-      <nav class="nav d-flex" >
-        <span v-for="(item, index) in Subjects.data.subjects" :key="index" :data-subject="item.id" :aria-selected="currentSubject == item.id" class="link" @click="toggleSubject">{{ item.name }}</span>
-      </nav>
-      <div style="position:relative">
-      <ButtonVue text="New Class" @click="toggleForm"/>
-      </div>
+      <nav class=" d-flex">
+      <h2  >All Classes</h2>
+          </nav>  
     </header>
-
     <section class="hero mb-10">
-      <ClassesContainer :classes="currentClasses"  @getSubjects="applyChanges" />
+      <CardRow v-for="(item, index) in classes" :item="item" :key="index"/>
       <router-view />
     </section>
-    <CommonForm v-if="form" :editMode="editMode" :type="'class'" :info="classes" @getSubjects="applyChanges" @close-form="toggleForm" />
 
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import ButtonVue from '../../components/shared/Button.vue'
-import ClassesContainer from '@/components/admin/classes/ClassesContainer.vue'
-import CommonForm from '@/components/shared/CommonForm.vue'
+import CardRow from '@/components/tutor/CardRow.vue'
 
 export default {
     name: 'classes-vue',
     components: {
-      ClassesContainer,
-      CommonForm,
-      ButtonVue
+      CardRow
     },
     data() {
       return {
-          changed:false,
           laptop: null,
-          form:false,
-          Subjects:{data:{subjects:[]}},
-          currentSubject: null,
-          showCD: false,
-          showdelete: false,
-          classes:null,
-          currentClasses:{}
+          classes:[],
       }
     },
 
-   async mounted() {
+    created() {
         window.addEventListener('resize', this.checkScreen)
-      await  this.get_subjects()
+        this.get_classes()
         this.checkScreen()
     },
 
     methods: {
-        toggleForm(item = null, editMode = false) {
-          this.form = !this.form
-          this.editMode = editMode
-          console.log(item)
-        },
+        
         checkScreen() {
             this.windowWidth = window.innerWidth;
 
@@ -68,55 +48,15 @@ export default {
                 this.laptop = false
             }
         },
-
-       async get_subjects() {
-          await  axios
-                .get(this.$hostname+"/api/admin/subjects")
-                .then(response => {
-                    if (response.status == 200) {
-                        this.Subjects = response.data;
-                        if(this.changed==false)
-                        {
-                          this.currentSubject=response.data.data.subjects[0].id
-                        }
-                        this.get_classes_for_subjects()
-                    }
-
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        },
-    
-        applyChanges(){ 
-         this.changed = true; 
-         this.get_subjects();
-       
-        },
-         
-        toggleSubject(e) {
-          this.currentSubject = e.target.dataset.subject
-          this.get_classes_for_subjects()
-        },
-      async  get_classes_for_subjects() {
-           await axios
-                .get(this.$hostname+"/api/admin/classes/"+this.currentSubject)
-                .then(response => {
-                    if (response.status == 200) {   
-                        this.currentClasses = response.data.data.class1;
-                        this.setTitle()
-                        
-                    }
-
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        },
         setTitle(){
-            this.currentClasses.forEach(function(object) {
+            this.classes.forEach(function(object) {
             object.title = "Grade "+object.grade.name+" "+object.subject.name+" "+object.country.name+"  students"
          })
+        },
+        async get_classes(){
+           const {data} = await axios.get(this.$hostname+'/api/tutor/classes')
+           this.classes = data.data.class1
+           this.setTitle()
         }
 
     },
@@ -143,7 +83,6 @@ export default {
   .header {
     height: 145px;
     width: 100%;
-    border-bottom: 1px solid rgba(130, 130, 135, 0.3);
   }
 
   .btn {

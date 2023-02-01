@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "App",
 
@@ -14,8 +15,16 @@ export default {
     return {};
   },
   created() {
+    this.setTokenOnRefresh()
   },
   methods: {
+    setTokenOnRefresh()
+    {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem('token')}`;
+      axios.defaults.headers.common['Content-Type'] =  'multipart/form-data'; 
+      axios.defaults.headers.common['responseType'] =  'blob'; 
+
+    },
   },
 };
 </script>
@@ -80,6 +89,23 @@ a {
   width: 100%;
   height: 100%;
 }
+
+::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 165, 0, 0.4);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 165, 0, 0.6);
+  }
 
 @media (min-width: 1440px) {
   .container {

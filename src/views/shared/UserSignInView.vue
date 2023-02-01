@@ -16,14 +16,16 @@ export default {
 
     data () {
         return {
-            title: 'Admin Sign In'
+            title: 'Sign In',
+            laptop:null
+
         }
     }
 }
 
 </script>
 
-<style>
+<style scoped>
 
     .admin-signin {
         min-height: 100vh;

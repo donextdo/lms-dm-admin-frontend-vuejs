@@ -44,7 +44,7 @@ export default {
     }
 
     .image {
-        width: 100%;
+        width: 80%;
         aspect-ratio: 1;
         display: flex;
         justify-content: center;

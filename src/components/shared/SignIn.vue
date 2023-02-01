@@ -6,36 +6,31 @@
     class="d-flex flex-column align-center"
     color="transparent"
   >
+
+  <v-alert
+      class="alert"
+      :value="error"
+      type="error"
+      border="left"
+      width="30vw" prominent
+      transition="scroll-x-reverse-transition"
+    >Something went wrong!</v-alert>
     <div class="square"></div>
     <h2 class="heading">{{ title }}</h2>
 
     <div class="d-flex flex-column justify-center align-left form-control">
-      <label for="" class="label">Email</label>
-      <v-text-field
-        loading="false"
-        background-color="#fff"
-        :height="laptop ? '35px' : '45px'"
-        hide-details
-        class="input"
-      ></v-text-field>
+      <TextInputVue label="Email" style="  width: 510px;" parent="page" type="text" :modelValue="user.email" @update:modelValue="newValue => user.email = newValue"/>
     </div>
 
     <div class="d-flex flex-column justify-center align-left form-control">
-      <label for="" class="label">Password</label>
-      <v-text-field
-        type="password"
-        loading="false"
-        background-color="#fff"
-        :height="laptop ? '35px' : '45px'"
-        hide-details=""
-        class="input"
-      ></v-text-field>
+      <TextInputVue label="Password" style="  width: 510px;" parent="page" type="password" :modelValue="user.password" @update:modelValue="newValue => user.password = newValue"/>
     </div>
 
     <div class="d-flex justify-space-between align-center options-row">
       <v-checkbox
         dense
-        v-model="checkbox"
+        v-model="user.remember"
+
         color="warning"
         label="Remember me"
         hide-details
@@ -50,15 +45,22 @@
       color="#ffa500"
       :height="laptop ? '45px' : '62px'"
       elevation="0"
-      @click="test()"
+      @click="login()"
       class="btn rounded-lg"
       >Sign In</v-btn
     >
+    <div class="sing-in">Don't have an account? <span @click="signup" >Sign Up now!</span></div>
+
   </v-card>
   
 </template>
 
 <script>
+  //vForms
+import axios from "axios";
+import TextInputVue from "./TextInput.vue";
+import { Form, } from 'vform';
+window.Form = Form;
 export default {
   name: "singin-vue",
 
@@ -66,10 +68,17 @@ export default {
 
   data() {
     return {
+      error:false,
       laptop: null,
+      user: new Form({
+                //user oject create
+                password: "",
+                email: "",
+                remember: false,
+            }),
     };
   },
-
+  components:{TextInputVue},
   created() {
     window.addEventListener("resize", this.checkScreen);
     this.checkScreen();
@@ -86,10 +95,29 @@ export default {
         this.laptop = false;
       }
     },
+   async login() {
+          await  this.user
+                .post(this.$hostname+"/api/login")
+                .then(response => {
+                    if (response.status == 200) {
+                      sessionStorage.setItem('token',response.data.data.token)
+                      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.data.token}`;
+                       sessionStorage.setItem('role',response.data.data.role_id)
+                       this.$router.push({ name: "DashboardView" });
+                    }
+                    this.user.reset(); //reset the form data after submit
+                })
 
-    test() {
-      this.$router.push({ name: "Dashboard" });
-    },
+                .catch(error => {
+                    console.log(error);
+                    this.error = true
+                        setTimeout(() => {
+                          this.error = false
+                        }, 2000)                });
+        },
+        signup(){
+          window.location.href='student'
+        }
   },
 };
 </script>
@@ -113,6 +141,8 @@ export default {
 
 .form-control {
   margin-top: 65px;
+  padding: 0%;
+  width:max-content;
 }
 
 .form-control + .form-control {
@@ -131,12 +161,24 @@ export default {
 }
 
 .btn {
-  margin-top: auto;
+  margin-top: 10%;
   font-size: 18px !important;
   text-transform: capitalize;
   font-weight: bold;
 }
+.sing-in {
+  margin-top: auto;
 
+  font-size: 16px;
+  text-align: center;
+  margin-top: 5px;
+  font-weight: 400;
+}
+
+.sing-in > span {
+  cursor:pointer;
+  color: #ffa500;
+}
 .forgot {
   color: #ffa500;
   font-weight: 500;

@@ -3,8 +3,9 @@
     <div class="container">
         <section class="hero">
             <div class="form">
-                <RegisterForm/>
-               
+                <router-view>
+    
+                </router-view>
             </div>
             <div class="image-grid">
                 <ImageGrid/>
@@ -18,29 +19,31 @@
 <script>
 
 import ImageGrid from '../../components/shared/ImageGrid.vue';
-import RegisterForm from '../../components/student/RegisterForm.vue'
 
 export default {
     name: "register-vue",
-    components: {ImageGrid, RegisterForm}
+    components: {ImageGrid}
 }
 
 </script>
 
 <style scoped>
     .register-vue {
-        height: 100vh;
+        position:fixed ;
+        height: 100%;
         width: 100%;
+        padding: 0%;
+        margin: 0%;
         background-color: #FEF3EC;
     }
 
     .container {
-        padding: 50px;
+        padding:0px;
     }
 
-    @media (min-width: 1500px) {
-        .container {
-            padding: 72px 75px;
+    @media (min-width: 1600px) {
+        .container2 {
+            padding: 22px 25px;
         }
     }
 
@@ -50,9 +53,10 @@ export default {
         display: grid;
         grid-template-columns: 2fr 1fr;
         position: relative;
+        top:-100px;
     }
 
-    @media (min-width: 1100px) {
+    @media (min-width: 1600px) {
         .hero {
             grid-template-columns: 3fr 1fr;
         }
@@ -62,14 +66,18 @@ export default {
         height: 100%;
         padding-left: 25px;
         padding-right: 80px;
+        margin-top:10%; 
         display: grid;
         align-items: center;
     }
 
     .image-grid {
-        height: 100%;
-        padding: 1.5rem;
+        margin-top:10%; 
+        height: auto;
+        padding-left: 25px;
         padding-right: 26px;
+        display: grid;
+        align-items: center;
     }
 
     .yellow-box {

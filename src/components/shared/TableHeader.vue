@@ -1,10 +1,10 @@
 <template>
-  <h1>Students</h1>
+  header
 </template>
 
 <script>
 export default {
-    name: 'students-vue'
+
 }
 </script>
 

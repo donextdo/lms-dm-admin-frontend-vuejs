@@ -1,27 +1,33 @@
 <template>
   <v-card flat height="432" width="100%" color="transparent">
+    <v-alert
+      class="alert"
+      :value="success"
+      type="success"
+      border="left"
+      width="30vw" prominent
+      transition="scroll-x-reverse-transition"
+    > Registered successfully</v-alert>
+
+    <v-alert
+      class="alert"
+      :value="error"
+      type="error"
+      border="left"
+      width="30vw" prominent
+      transition="scroll-x-reverse-transition"
+    >Something went wrong!</v-alert>
     <h2 class="title">Create your Account</h2>
-    <v-form>
       <v-row>
         <v-col>
           <div class="form-control">
-            <label for="">Full name</label>
-            <v-text-field
-              loading="false"
-              dense
-              background-color="#fff"
-            ></v-text-field>
+            <TextInputVue label="Full name"  parent="page" type="text" :modelValue="user.name" @update:modelValue="newValue => user.name = newValue"/>
           </div>
         </v-col>
 
         <v-col>
           <div class="form-control">
-            <label for="">Email</label>
-            <v-text-field
-              loading="false"
-              dense
-              background-color="#fff"
-            ></v-text-field>
+            <TextInputVue label="Contact No"  parent="page" type="text" :modelValue="user.contact_no" @update:modelValue="newValue => user.contact_no = newValue"/>
           </div>
         </v-col>
       </v-row>
@@ -29,25 +35,13 @@
       <v-row>
         <v-col>
           <div class="form-control">
-            <label for="">Contact Number</label>
-            <v-text-field
-              loading="false"
-              dense
-              background-color="#fff"
-            ></v-text-field>
+            <TextInputVue label="Email"  parent="page" type="text" :modelValue="user.email" @update:modelValue="newValue => user.email = newValue"/>
           </div>
         </v-col>
 
         <v-col>
           <div class="form-control">
-            <label for="">Date of Birth</label>
-            <v-text-field
-              type="date"
-              loading="false"
-              placeholder=""
-              dense
-              background-color="#fff"
-            ></v-text-field>
+            <TextInputVue label="Date Of Birth"  parent="page" type="date" :modelValue="user.date_of_birth" @update:modelValue="newValue => user.date_of_birth = newValue"/>
           </div>
         </v-col>
       </v-row>
@@ -55,25 +49,13 @@
       <v-row>
         <v-col>
           <div class="form-control">
-            <label for="">Country</label>
-            <v-combobox
-              loading="false"
-              dense
-              background-color="#fff"
-              :items="items"
-            ></v-combobox>
+            <TextInputVue label="Country"  parent="page" type="select" :initialValue="countries.countries[0]" :items="countries.countries" :modelValue="user.country_id" @update:modelValue="newValue => user.country_id = newValue"/>
           </div>
         </v-col>
 
         <v-col>
-          <div class="form-control">
-            <label for="">Subjects you want to learn</label>
-            <v-combobox
-              loading="false"
-              dense
-              background-color="#fff"
-              :items="subjects"
-            ></v-combobox>
+            <div class="form-control">
+            <TextInputVue label="Subject want to learn"  parent="page" type="select" :initialValue="subjects.subjects[0]" :items="subjects.subjects" :modelValue="user.subject_id" @update:modelValue="newValue => user.subject_id = newValue"/>
           </div>
         </v-col>
       </v-row>
@@ -81,50 +63,153 @@
       <v-row>
         <v-col>
           <div class="form-control">
-            <label for="">Create a Password</label>
-            <v-text-field
-              type="password"
-              loading="false"
-              dense
-              background-color="#fff"
-            ></v-text-field>
+            <TextInputVue label="Create a Password"  parent="page" type="password" :modelValue="user.password" @update:modelValue="newValue => user.password = newValue"/>
           </div>
         </v-col>
-
         <v-col>
           <div class="form-control">
-            <label for="">Confirm Password</label>
-            <v-text-field
-              type="password"
-              loading="false"
-              dense
-              background-color="#fff"
-            ></v-text-field>
+            <TextInputVue label="Confirm Password"  parent="page" type="password" :modelValue="user.password_confirmation" @update:modelValue="newValue => user.password_confirmation = newValue"/>
           </div>
         </v-col>
       </v-row>
+            <StudentDataUpload @toggle="toggle" v-if="showForm" @create="create"/>
+            <Button style="margin-left:27%;width:400px;margin-top: 2%;" text="Register" @click="toggle"/>
 
-      <button class="register">Register</button>
-      <div class="sing-in">Already have an account? <span>Sing In!</span></div>
-    </v-form>
+      <div class="sing-in">Already have an account? <span @click="signin" >Sign In!</span></div>
+
   </v-card>
 </template>
 
 <script>
+import Button from '../shared/Button.vue';
+import StudentDataUpload from '../shared/StudentDataUpload.vue';
+import TextInputVue from '../shared/TextInput.vue';
+import axios from 'axios';
+import { Form, } from 'vform';
+window.Form = Form;
 export default {
   name: "register-form",
-
+  components:{
+    TextInputVue,
+    StudentDataUpload,
+    Button
+  },
   data() {
     return {
-      items: ["Sri Lanka", "India", "Australia", "England"],
-
-      subjects: ["Dancing", "Music", "Drama"],
+      countries: {},
+      showForm:false,
+      subjects: {},
+      success:false,
+      error:false,
+               
+  
+      user:new Form({
+                name:"",
+                password: "",
+                email: "",
+                password_confirmation:"",
+                contact_no:"",
+                date_of_birth:"",     
+                country_id:"", 
+                subject_id:"",            
+                remember: false,
+               }),
+               userData:new FormData()     
     };
   },
-};
+  created(){
+    this.get_countries()
+    this.get_subjects()
+  },
+  methods:{
+     async get_countries(){
+    await  axios.get(this.$hostname+"/api/countries").then(
+        response=>{
+          if(response.status == 200)
+          {
+            this.countries = response.data.data
+            console.log(response)
+
+          }
+        }
+      ).catch(error => {
+                    console.log(error);
+                });
+ },
+ toggle(){
+   this.showForm=!this.showForm
+ },
+    
+ async get_subjects(){
+    await  axios.get(this.$hostname+"/api/subjects").then(
+        response=>{
+          if(response.status == 200)
+          {
+            this.subjects = response.data.data
+            console.log(response)
+
+          }
+        }
+      ).catch(error => {
+                    console.log(error);
+                });
+ },
+    signin(){
+      window.location.href='/'
+    },
+    async register() {
+      await axios
+                  .post(this.$hostname+"/api/register",this.userData)
+                  .then(response => {
+                      if (response.status == 200) {
+                        console.log(response)
+                        this.toggle()
+                        this.success = true
+                        setTimeout(() => {
+                        this.success = false
+                        }, 2000)
+                    
+                      }
+                  })
+                  .catch(error => {
+                      console.log(error);
+                      this.error = true
+                      setTimeout(() => {
+                        this.error = false
+                      }, 2000)
+                  });
+  },
+ async create(files,description){
+  
+  this.userData.append('description',description)
+  files.forEach((file)=>{
+  this.userData.append('files',file)
+  })
+  this.convertData()
+  this.register()
+ },
+ convertData(){
+  this.userData.append('name',this.user.name)
+  this.userData.append('email',this.user.email)
+  this.userData.append('password',this.user.password)
+  this.userData.append('password_confirmation',this.user.password_confirmation)
+  this.userData.append('date_of_birth',this.user.date_of_birth)
+  this.userData.append('subject_id',this.user.subject_id)
+  this.userData.append('contact_no',this.user.contact_no)
+  this.userData.append('country_id',this.user.country_id)
+  this.userData.append('remember',this.user.remember)
+ 
+
+
+ }
+
+},
+
+  }
+
 </script>
 
-<style>
+<style scoped>
 .title {
   font-family: "Source Serif Pro", serif;
   font-weight: 600;
@@ -158,25 +243,28 @@ label {
 
 .register {
   display: block;
-  width: 270px;
+  width: 300px;
   background-color: #ffa500;
   padding-block: 8px;
   cursor: pointer;
   align-self: center;
   font-size: 15px;
   margin: 0 auto;
+  margin-top: 4%;
   font-weight: 500;
   border-radius: 8px;
+  height: max-content;
 }
 
 .sing-in {
-  font-size: 10px;
+  font-size: 16px;
   text-align: center;
   margin-top: 5px;
   font-weight: 400;
 }
 
 .sing-in > span {
+  cursor:pointer;
   color: #ffa500;
 }
 </style>

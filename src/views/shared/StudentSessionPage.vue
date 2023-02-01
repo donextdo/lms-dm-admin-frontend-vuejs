@@ -1,7 +1,6 @@
 <template>
 
-  <div class="tutors">
-
+  <div class="students">
     <v-alert
       class="alert"
       :value="success"
@@ -9,16 +8,9 @@
       border="left"
       width="30vw" prominent
       transition="scroll-x-reverse-transition"
-    >Tutor deleted successfully</v-alert>
+    >Student deleted successfully</v-alert>
 
-    <v-alert
-      class="alert"
-      :value="resetpw"
-      type="success"
-      border="left"
-      width="30vw" prominent
-      transition="scroll-x-reverse-transition"
-    >Password reset successfully</v-alert>
+    
 
     <v-alert
       class="alert"
@@ -28,10 +20,11 @@
       width="30vw" prominent
       transition="scroll-x-reverse-transition"
     >Something went wrong!</v-alert>
+
     <header class="header">
       <div class="th">
         <div class="td">
-          <span>Tutor</span>
+          <span>Students</span>
           <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M8.50765 8H1.49235C1.21539 8.00043 0.943985 7.9164 0.70954 7.75763C0.475096 7.59886 0.287202 7.37185 0.167607 7.10287C0.0276073 6.78372 -0.0263148 6.42864 0.0119851 6.0781C0.0502851 5.72756 0.179267 5.39565 0.384232 5.12021L3.89188 0.544835C4.02954 0.373815 4.19972 0.236656 4.39091 0.142653C4.5821 0.04865 4.78982 0 5 0C5.21018 0 5.4179 0.04865 5.60909 0.142653C5.80028 0.236656 5.97046 0.373815 6.10812 0.544835L9.61577 5.12021C9.82073 5.39565 9.94972 5.72756 9.98802 6.0781C10.0263 6.42864 9.97239 6.78372 9.83239 7.10287C9.7128 7.37185 9.5249 7.59886 9.29046 7.75763C9.05602 7.9164 8.78461 8.00043 8.50765 8Z" fill="black"/>
           <path d="M1.49235 12H8.50765C8.78461 11.9996 9.05602 12.0836 9.29046 12.2424C9.5249 12.4011 9.7128 12.6282 9.83239 12.8971C9.97239 13.2163 10.0263 13.5714 9.98801 13.9219C9.94971 14.2724 9.82073 14.6043 9.61577 14.8798L6.10812 19.4552C5.97046 19.6262 5.80028 19.7633 5.60909 19.8573C5.4179 19.9514 5.21018 20 5 20C4.78982 20 4.5821 19.9514 4.39091 19.8573C4.19972 19.7633 4.02954 19.6262 3.89188 19.4552L0.384231 14.8798C0.179266 14.6043 0.0502844 14.2724 0.0119839 13.9219C-0.0263157 13.5714 0.0276079 13.2163 0.167608 12.8971C0.287203 12.6282 0.475097 12.4011 0.70954 12.2424C0.943985 12.0836 1.21539 11.9996 1.49235 12Z" fill="black"/>
@@ -41,7 +34,17 @@
 
       <div class="th">
         <div class="td">
-          <span>Joined Date</span>
+          <span>Enrolled Date</span>
+          <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.50765 8H1.49235C1.21539 8.00043 0.943985 7.9164 0.70954 7.75763C0.475096 7.59886 0.287202 7.37185 0.167607 7.10287C0.0276073 6.78372 -0.0263148 6.42864 0.0119851 6.0781C0.0502851 5.72756 0.179267 5.39565 0.384232 5.12021L3.89188 0.544835C4.02954 0.373815 4.19972 0.236656 4.39091 0.142653C4.5821 0.04865 4.78982 0 5 0C5.21018 0 5.4179 0.04865 5.60909 0.142653C5.80028 0.236656 5.97046 0.373815 6.10812 0.544835L9.61577 5.12021C9.82073 5.39565 9.94972 5.72756 9.98802 6.0781C10.0263 6.42864 9.97239 6.78372 9.83239 7.10287C9.7128 7.37185 9.5249 7.59886 9.29046 7.75763C9.05602 7.9164 8.78461 8.00043 8.50765 8Z" fill="black"/>
+          <path d="M1.49235 12H8.50765C8.78461 11.9996 9.05602 12.0836 9.29046 12.2424C9.5249 12.4011 9.7128 12.6282 9.83239 12.8971C9.97239 13.2163 10.0263 13.5714 9.98801 13.9219C9.94971 14.2724 9.82073 14.6043 9.61577 14.8798L6.10812 19.4552C5.97046 19.6262 5.80028 19.7633 5.60909 19.8573C5.4179 19.9514 5.21018 20 5 20C4.78982 20 4.5821 19.9514 4.39091 19.8573C4.19972 19.7633 4.02954 19.6262 3.89188 19.4552L0.384231 14.8798C0.179266 14.6043 0.0502844 14.2724 0.0119839 13.9219C-0.0263157 13.5714 0.0276079 13.2163 0.167608 12.8971C0.287203 12.6282 0.475097 12.4011 0.70954 12.2424C0.943985 12.0836 1.21539 11.9996 1.49235 12Z" fill="black"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="th">
+        <div class="td">
+          <span>Grade</span>
           <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M8.50765 8H1.49235C1.21539 8.00043 0.943985 7.9164 0.70954 7.75763C0.475096 7.59886 0.287202 7.37185 0.167607 7.10287C0.0276073 6.78372 -0.0263148 6.42864 0.0119851 6.0781C0.0502851 5.72756 0.179267 5.39565 0.384232 5.12021L3.89188 0.544835C4.02954 0.373815 4.19972 0.236656 4.39091 0.142653C4.5821 0.04865 4.78982 0 5 0C5.21018 0 5.4179 0.04865 5.60909 0.142653C5.80028 0.236656 5.97046 0.373815 6.10812 0.544835L9.61577 5.12021C9.82073 5.39565 9.94972 5.72756 9.98802 6.0781C10.0263 6.42864 9.97239 6.78372 9.83239 7.10287C9.7128 7.37185 9.5249 7.59886 9.29046 7.75763C9.05602 7.9164 8.78461 8.00043 8.50765 8Z" fill="black"/>
           <path d="M1.49235 12H8.50765C8.78461 11.9996 9.05602 12.0836 9.29046 12.2424C9.5249 12.4011 9.7128 12.6282 9.83239 12.8971C9.97239 13.2163 10.0263 13.5714 9.98801 13.9219C9.94971 14.2724 9.82073 14.6043 9.61577 14.8798L6.10812 19.4552C5.97046 19.6262 5.80028 19.7633 5.60909 19.8573C5.4179 19.9514 5.21018 20 5 20C4.78982 20 4.5821 19.9514 4.39091 19.8573C4.19972 19.7633 4.02954 19.6262 3.89188 19.4552L0.384231 14.8798C0.179266 14.6043 0.0502844 14.2724 0.0119839 13.9219C-0.0263157 13.5714 0.0276079 13.2163 0.167608 12.8971C0.287203 12.6282 0.475097 12.4011 0.70954 12.2424C0.943985 12.0836 1.21539 11.9996 1.49235 12Z" fill="black"/>
@@ -58,94 +61,87 @@
           </svg>
         </div>
       </div>
-      
-      <div class="th">
-        <ButtonVue text="New Tutor" @click="toggleForm" />
-        </div>
 
     </header>
 
     <section class="hero d-flex flex-column">
 
-      <TableRow type='tutor' @show-form="toggleForm" @delete="showDeleteDialog" @show-profile="toggleProfile" v-for="(tutor, index) in tutors.tutors" :item="tutor" :key="index"/>
- 
+      <TableRow  @shift="shift" :Ssession="true" type="student" @getStudents="get_students" @show-form="toggleForm" @delete="showDeleteDialog" @show-profile="showProfile" v-for="(student, index) in students" :item="student" :key="index"/>
 
     </section>
 
     <transition name="card">
-      <ProfileCard v-if="profile" type="tutor" :info="tutor" @close-profile="toggleProfile"/>
+    <ProfileCard v-if="profile" type="student" :info="student" @close-profile="closeProfile"/>
+    <CommonFormVue v-if="form" :editMode="editMode"  :type="'student'" :info="student" @close-form="toggleForm"  @getStudents="get_students" />
 
-      <CommonForm v-if="form" :editMode="editMode" @getTutors="get_tutors" :type="'tutor'" :info="tutor" @close-form="toggleForm" />
-
-      <ConfirmationDialogVue v-if="showCD" 
-        title="Rest Password" 
-        :text="`Do you want to reset ${tutorName} password`" 
-        btnText="Reset"
-        type="tutor" 
-        @discard="onDiscard1"
-        @accept="onReset"
-      />
-
-      <ConfirmationDialogVue v-if="showdelete" 
-        title="Delete Tutor" 
-        :text="`Do you want remove ${tutorName}`" 
+    <ConfirmationDialogVue v-if="showdelete" 
+        title="Delete Student" 
+        :text="`Do you want remove ${studentName}?`" 
         btnText="Remove" 
-        @discard="onDiscard2"
+        @discard="onDiscard"
         @accept="onDelete"
       />
+    
     </transition>
+    <div class="row">
+        <div class="col-10">
+
+        </div>
+        <!-- <div class="col-2">
+          <Button  text="Back" :transparent="true"  @click="$router.go(-1)"/>
+        </div> -->
+      </div>
   </div>
 
 </template>
 
 <script>
+import CommonFormVue from '@/components/shared/CommonForm.vue';
 import ConfirmationDialogVue from '@/components/shared/ConfirmationDialog.vue'
-import TableRow from '@/components/shared/TableRow.vue'
+import TableRow from '@/components/shared/TableRow.vue';
 import ProfileCard from '@/components/shared/ProfileCard.vue'
-import CommonForm from '@/components/shared/CommonForm.vue'
-import ButtonVue from '../../components/shared/Button.vue'
-
+// import Button from '@/components/shared/Button.vue';
 import axios from 'axios';
-
-
-
 export default {
-    name: 'tutors-vue',
+    name: 'students-vue',
 
     components: {
       TableRow,
       ProfileCard,
-      CommonForm,
       ConfirmationDialogVue,
-      ButtonVue
+      CommonFormVue,
+      // Button
+
     },
 
     data () {
       return {
-        tutors:{tutors:null},
-        profile: false,
+        students:{},
         form: false,
+        profile: false,
+        studentt: null,
         showCD: false,
         showdelete: false,
-        tutorName: null,
-        success: false,
+        studentName: null,
+        studentId:null,
+        success: null,
         error: false,
         resetpw: null,
-        laptop: null,
-        editMode: false,
-        tutor: null,
-        tutorId:null,
+        laptop:null
       }
     },
-
-   async created() {
+    async created() {
         window.addEventListener('resize', this.checkScreen)
-      await  this.get_tutors()
-        this.checkScreen()
+       await this.get_students()
     },
-
     methods: {
-        checkScreen() {
+      async  shift(id,status,class_id){
+       
+          await axios.put(this.$hostname+"/api/admin/shiftSession/"+class_id+'/'+id)
+          this.get_students()
+    
+   },
+      checkScreen() {
             this.windowWidth = window.innerWidth;
 
             if(this.windowWidth < 1400) {
@@ -156,74 +152,61 @@ export default {
                 this.laptop = false
             }
         },
-
-        toggleProfile(item = null) {
-          this.tutor = item
+        showProfile(item = null) {
+          this.student = item
           this.profile = !this.profile
         },
-
         toggleForm(item = null, editMode = false) {
           this.form = !this.form
-          this.tutor = item
+          this.student = item
           this.editMode = editMode
           console.log(this.tutor)
         },
-
-      async  get_tutors() {
-          await  axios
-                .get(this.$hostname+"/api/admin/tutors")
+        closeProfile() {
+          this.profile = false
+        },
+        
+        async  get_students() {
+          if(sessionStorage.getItem('role')==1)
+          {
+            this.userType='admin'
+          }else
+          {
+            this.userType='tutor'
+          }
+           await axios
+                .get(this.$hostname+"/api/"+this.userType+"/studentClass/"+sessionStorage.getItem('class_id')
+)
                 .then(response => {
                     if (response.status == 200) {
-                        this.tutors = response.data.data;
+                        this.students = response.data.data.student;
                     }
 
                 })
-                .catch(error => {this.error=true
-                  setTimeout(() => {
-                          this.error = false
-                        }, 2000)
+                .catch(error => {
                     console.log(error);
                 });
         },
-        showResetDialog(name) {
-          this.tutorName = name
-          this.showCD = !this.showCD
-        },
-
-        onDiscard1() {
-          this.showCD = !this.showCD
-        },
-
-        onReset() {
-          this.resetpw = true
-
-          setTimeout(() => {
-            this.resetpw = false
-          }, 2000)
-
-          this.showCD = !this.showCD
-        },
-
         showDeleteDialog(name,id) {
-          this.tutorName = name
-          this.tutorId = id
+          this.studentName = name
+          this.studentId =id
           this.showdelete = !this.showdelete
         },
 
-        onDiscard2() {
+        onDiscard() {
           this.showdelete = !this.showdelete
         },
 
-       async onDelete() {
+      async  onDelete() {
          await axios
-                .delete(this.$hostname+"/api/admin/tutor/"+this.tutorId)
+                .delete(this.$hostname+"/api/admin/student/"+this.studentId)
                 .then(response => {
                     if (response.status == 200) {
                       this.success = true
                         setTimeout(() => {
                           this.success = false
                         }, 2000)
-                        this.get_tutors()
+                        this.get_students()
 
 
                     }
@@ -235,22 +218,20 @@ export default {
                         }, 2000)
                     console.log(error);
                 });
-        
+                this.showdelete = !this.showdelete
 
-          this.showdelete = !this.showdelete
         }
-
     },
 }
-
 </script>
+
 
 <style scoped>
 
-  .tutors {
+  .students {
     width: 100%;
-    padding-left: 160px;
-    padding-right: 180px;
+    padding-left: 0;
+    padding-right: 0;
     position: relative;
   }
 
@@ -262,11 +243,11 @@ export default {
   }
 
   .header {
-    padding: 0 8px 0 30px;
+    padding: 0 38px 0 30px;
     width: 100%;
     height: 150px;
     display: grid;
-    grid-template-columns: 3fr 2fr 1.5fr 4fr;
+    grid-template-columns: 3fr 2fr 1.2fr 1.5fr 2fr;
   }
 
   .th {
@@ -286,7 +267,6 @@ export default {
     opacity: 0.5;
   }
 
-
   .td > span {
     font-size: 18px;
     font-weight: 700;
@@ -295,15 +275,6 @@ export default {
 
   .td > svg {
     height: 16px;
-  }
-
-  .btn {
-    font-size: 18px;
-    text-transform: capitalize;
-    font-weight: bold;
-    position: absolute;
-    bottom: 25px;
-    right: 0;
   }
 
   .hero {
@@ -347,7 +318,7 @@ export default {
   }
 
   @media (max-width: 1400px) {
-    .tutors {
+    .students {
       padding-inline: 100px;
     }
 
@@ -357,9 +328,8 @@ export default {
     }
 
     .header {
-      padding: 0 8px 0 20px;
+      padding: 0 28px 0 20px;
       height: 100px;
-      /* grid-template-columns: 3fr 2fr 1.2fr 3fr; */
     }
 
     .td {
@@ -373,11 +343,6 @@ export default {
 
     .td > svg {
       height: 12px;
-    }
-
-    .btn {
-      font-size: 12px;
-      bottom: 12px;
     }
 
     .hero {

@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <Sidebar/>
-    <Navbar :title="this.$route.matched[1].name" :name="name" :profile="profile"/>
+    <Navbar :title="this.$route.matched[1].name" :name="name" :profile="profile" class="nav-bar"/>
     <section class="hero">
         
         <router-view />
@@ -24,11 +24,14 @@ export default {
 
     data() {
         return {
+            laptop:null,
             title: 'Dashboard',
             name: 'John Doe',
-            profile: 'avatar'
+            profile: 'avatar',
+            
         }
-    }
+    },
+    
 }
 
 </script>
@@ -38,6 +41,8 @@ export default {
     .dashboard {
         min-height: 100vh;
         min-width: 100vw;
+        background-color: #FEF3EC;
+
     }
 
     .hero {
