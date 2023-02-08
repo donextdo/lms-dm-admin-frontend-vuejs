@@ -1,8 +1,11 @@
 <template>
-          <v-btn v-if="transparent  && modal" style="color:red;" color="transparent" :width="laptop ? '100px' : '142px'" :height="laptop ? '40px' : '62px'" elevation="0" class="rounded-lg" @click="click"><p style="padding-bottom:3px; border-bottom-width:1px;border-bottom-style:solid;"> {{text}}</p></v-btn>
-          <v-btn v-else-if="modal" color="#ffa500" :width="laptop ? '100px' : '142px'" :height="laptop ? '40px' : '62px'" elevation="0" class="btn2 rounded-lg" @click="click">{{text}}</v-btn>
-          <v-btn v-else-if="transparent && !modal" style="color:red " color="transparent" :width="laptop ? '100px' : '142px'" :height="laptop ? '40px' : '62px'" elevation="0" class="btn rounded-lg" @click="click"><p style="padding-bottom:3px; border-bottom-width:1px;border-bottom-style:solid;"> {{text}}</p></v-btn>
-          <v-btn v-else-if="!modal" color="#ffa500" :width="laptop ? '100px' : '142px'" :height="laptop ? '40px' : '62px'" elevation="0" class="btn rounded-lg" @click="click">{{text}}</v-btn>
+          <v-btn v-if="transparent  && modal" style="color:red;" color="transparent" :width="laptop ? '100px' : '142px'" :height="laptop ? '40px' : '45px'" elevation="0" class="rounded-lg" @click="click"><p style="padding-bottom:3px; border-bottom-width:1px;border-bottom-style:solid;"> {{text}}</p></v-btn>
+
+          <v-btn v-else-if="modal" color="#ffa500" :width="laptop ? '100px' : '142px'" :height="laptop ? '40px' : '45px'" elevation="0" class="btn2 rounded-lg" @click="click">{{text}}</v-btn>
+          
+          <v-btn v-else-if="transparent && !modal" style="color:red " color="transparent" :width="laptop ? '100px' : '142px'" :height="laptop ? '40px' : '45px'" elevation="0" class="btn rounded-lg" @click="click"><p style="padding-bottom:3px; border-bottom-width:1px;border-bottom-style:solid;"> {{text}}</p></v-btn>
+
+          <v-btn v-else-if="!modal" color="#ffa500" :width="laptop ? '100px' : '142px'" :height="laptop ? '40px' :  '45px'" elevation="0" class="btn rounded-lg" @click="click">{{text}}</v-btn>
 </template>
 <script>
 export default{

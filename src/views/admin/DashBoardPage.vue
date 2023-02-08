@@ -220,14 +220,14 @@ export default {
 }
 
 .card-title {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   line-height: 2rem;
   font-weight: 500;
   margin-bottom: 1rem;
 }
 
 .data {
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: #492801;
   line-height: 2rem;
   font-weight: bold;
@@ -245,7 +245,7 @@ export default {
 
 .link > span{
     color: #FE3F49;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -259,7 +259,7 @@ export default {
 .classes > h2 {
     color: #000;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 32px;
     letter-spacing: 1px;
     margin-bottom: 3rem;
@@ -277,7 +277,7 @@ export default {
 .requests > h2 {
   color: #000;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 32px;
   letter-spacing: 1px;
   margin-bottom: 3rem;
@@ -309,7 +309,7 @@ export default {
   }
 
   .th > span {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 32px;
   }

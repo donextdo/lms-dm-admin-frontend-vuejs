@@ -15,9 +15,9 @@
           <h4 class="d-flex align-center">Grade</h4>
           <h4 class="d-flex align-center">Amount</h4>
           <button  style="color:#226B00; background-color:#CCFF98;
-           border-radius:50px; height:80%; width:90%;margin-top:5%;">Online Transfer</button>
+           border-radius:50px; height:70%; width:80%;margin-top:5%;">Online Transfer</button>
            <button  style="color:#636B00; background-color:#FFFB98;
-           border-radius:50px; height:80%; width:90%;margin-top:5%;">Bank Transfer</button>
+           border-radius:50px; height:70%; width:80%;margin-top:5%;">Bank Transfer</button>
         <a class="d-flex align-center" style="color:red; font-weight:bold;">View Details <svg  style="margin-left:4%;" width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M0.5 12.5L5.5 7.5L0.5 2.5L1.5 0.5L8.5 7.5L1.5 14.5L0.5 12.5Z" fill="#FE3F49"/>
 </svg>
