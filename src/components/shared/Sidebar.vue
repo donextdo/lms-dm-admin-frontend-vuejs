@@ -201,7 +201,7 @@ export default {
 
     .link > span {
         color: #251605;
-        font-size: 20px;
+        font-size: 18px;
         line-height: 32px;
     }
 

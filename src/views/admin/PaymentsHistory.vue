@@ -32,9 +32,9 @@
         </div>
         <div class="th">
           <div class="td">
-           <div style="top:20px; height:40px;display:grid;grid-template-columns:83% 18%; border-radius:50px;width:max-content;background-color: white; ">
+           <div style="top:20px; height:40px;display:grid;grid-template-columns:90% 12%; border-radius:50px;width:max-content;background-color: white; ">
             <v-text-field    loading="false"
-               style="padding-left:10px;margin:0;top:-10px; position: relative ;border-radius:50px;" >
+               style="padding-left:160px;margin:0;top:-10px; position: relative ;border-radius:50px;" >
             </v-text-field>
             <button style="margin-top:4px;">
             <svg width="32"  height="32" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -106,14 +106,15 @@
       gap: 13px;
       bottom: 25px;
       left: 0;
-      opacity: 0.5;
+      
     }
   
   
     .td > span {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
       line-height: 32px;
+      opacity: 0.5;
     }
   
     .td > svg {

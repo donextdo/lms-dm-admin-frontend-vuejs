@@ -288,7 +288,7 @@ export default {
 
 
   .td > span {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 32px;
   }
@@ -298,7 +298,7 @@ export default {
   }
 
   .btn {
-    font-size: 18px;
+    font-size: 16px;
     text-transform: capitalize;
     font-weight: bold;
     position: absolute;

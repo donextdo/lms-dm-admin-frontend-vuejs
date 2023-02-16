@@ -147,7 +147,7 @@ export default {
   }
 
   .btn {
-    font-size: 18px;
+    font-size: 16px;
     text-transform: capitalize;
     font-weight: bold;
     margin-bottom: 34px;
@@ -162,7 +162,7 @@ export default {
     text-decoration: none;
     color: #000;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 32px;
     margin-bottom: 6px;
     position: relative;
@@ -171,12 +171,12 @@ export default {
   .link::before {
     content: '';
     position: absolute;
-    width: 70%;
+    width: 100%;
     background-color: #FFA500;
     height: 3px;
     bottom: -6px;
-    left: 15%;
-    right: 15%;
+    left: 1%;
+    right: 10%;
     transform: scaleX(0);
     transition: transform .3s ease-in;
   }

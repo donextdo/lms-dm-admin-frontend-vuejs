@@ -33,7 +33,7 @@ export default {
 
 
 .card-title {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   line-height: 2rem;
   font-weight: 500;
   margin-bottom: 1rem;

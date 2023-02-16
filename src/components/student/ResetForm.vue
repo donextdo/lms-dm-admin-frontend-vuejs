@@ -47,8 +47,8 @@
       Button
     },
     methods:{
-      reset(){
-        this.user.post(this.$hostname+"/api/resetPassword")
+      async reset(){
+      await  this.user.post(this.$hostname+"/api/resetPassword")
                   .then(response => {
                       if (response.status == 200) {
                         console.log(response)

@@ -117,7 +117,7 @@ export default {
   text-decoration: none;
   color: #000;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 32px;
   margin-bottom: 6px;
   position: relative;

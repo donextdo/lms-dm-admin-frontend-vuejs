@@ -104,7 +104,7 @@ export default {
         margin-top: 3%;
     }
     .title {
-        font-size: 32px !important;
+        font-size: 25px !important;
         font-weight: bold;
         line-height: 1.5;
         margin-top: 3%;
@@ -122,7 +122,7 @@ export default {
 
     .admin-data > span {
         color: #000;
-        font-size: 18px;
+        font-size: 15px;
         font-weight: 600;
     }
 
@@ -135,7 +135,7 @@ export default {
         }
 
         .title {
-            font-size: 24px !important;
+            font-size: 20px !important;
         }
 
         .admin-data {
@@ -145,7 +145,7 @@ export default {
         }
 
         .admin-data > span {
-            font-size: 12px;
+            font-size: 11px;
         }
     }
 
