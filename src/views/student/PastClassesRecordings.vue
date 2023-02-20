@@ -13,12 +13,13 @@
       <RecordingCardVue v-for="(item, key) in previousMonth" :item="item" :key="key"/>
     </div>
   </div>
-
+<loader v-if="loader"/>
     </div>
     
   </template>
   
   <script>
+  import loader from '@/components/shared/loader.vue';
   import RecordingCardVue from './RecordingCard.vue';
   import axios from 'axios';
 
@@ -26,6 +27,7 @@
       name:'classes-recordings-vue',
       components:{
         RecordingCardVue,
+        loader
       },
       
     data(){
@@ -33,6 +35,7 @@
            sessions:[],
            currentMonth:[],
            previousMonth:[],
+           loader:false
          }
     },
     async created()
@@ -43,9 +46,10 @@
     methods:{
               async get_classes()
               {
+                this.loader=true
                 const {data} = await axios.get(this.$hostname+'/api/student/pastClasses')
                 this.sessions = data.data.sessions
-
+                this.loader=false
                },
 
         devide_Classes(){

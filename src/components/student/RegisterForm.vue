@@ -16,7 +16,7 @@
       border="left"
       width="30vw" prominent
       transition="scroll-x-reverse-transition"
-    >Something went wrong!</v-alert>
+    >{{errormsg}}</v-alert>
     <h2 class="title">Create your Account</h2>
       <v-row>
         <v-col>
@@ -63,24 +63,34 @@
       <v-row>
         <v-col>
           <div class="form-control">
-            <TextInputVue label="Create a Password"  parent="page" type="password" :modelValue="user.password" @update:modelValue="newValue => user.password = newValue"/>
+            <TextInputVue label="Create a Password"  parent="page" :type="!check?'password':'text'" :modelValue="user.password" @update:modelValue="newValue => user.password = newValue"/>
           </div>
         </v-col>
         <v-col>
           <div class="form-control">
-            <TextInputVue label="Confirm Password"  parent="page" type="password" :modelValue="user.password_confirmation" @update:modelValue="newValue => user.password_confirmation = newValue"/>
+            <TextInputVue label="Confirm Password"  parent="page" :type="!check?'password':'text'" :modelValue="user.password_confirmation" @update:modelValue="newValue => user.password_confirmation = newValue"/>
           </div>
         </v-col>
       </v-row>
+      <v-checkbox
+        dense
+        v-model="check"
+
+        color="warning"
+        label="show password"
+        hide-details
+        class="mt-0 px-3"
+      ></v-checkbox>
             <StudentDataUpload @toggle="toggle" v-if="showForm" @create="create"/>
             <Button style="margin-left:27%;width:400px;margin-top: 2%;" text="Register" @click="toggle"/>
 
       <div class="sing-in">Already have an account? <span @click="signin" >Sign In!</span></div>
-
+      <loader v-if="loader" />
   </v-card>
 </template>
 
 <script>
+import loader from '../shared/loader.vue'
 import Button from '../shared/Button.vue';
 import StudentDataUpload from '../shared/StudentDataUpload.vue';
 import TextInputVue from '../shared/TextInput.vue';
@@ -92,16 +102,20 @@ export default {
   components:{
     TextInputVue,
     StudentDataUpload,
-    Button
+    Button,
+    loader
+
   },
   data() {
     return {
+      check:false,
+      errormsg:null,
       countries: {},
       showForm:false,
       subjects: {},
       success:false,
       error:false,
-               
+      loader:false,           
   
       user:new Form({
                 name:"",
@@ -123,6 +137,7 @@ export default {
   },
   methods:{
      async get_countries(){
+
     await  axios.get(this.$hostname+"/api/countries").then(
         response=>{
           if(response.status == 200)
@@ -158,12 +173,15 @@ export default {
       window.location.href='/'
     },
     async register() {
+      this.loader=true
+
       await axios
                   .post(this.$hostname+"/api/register",this.userData)
                   .then(response => {
                       if (response.status == 200) {
                         console.log(response)
                         this.toggle()
+                        this.loader=false
                         this.success = true
                         setTimeout(() => {
                         this.success = false
@@ -172,21 +190,42 @@ export default {
                       }
                   })
                   .catch(error => {
+                    this.toggle()
                       console.log(error);
+                      this.loader=false
                       this.error = true
-                      setTimeout(() => {
+                      if(error.response.status==500)
+                      {
+                        this.errormsg='Existing email address'
+                      }
+                      else
+                      {
+                        this.errormsg=Object.values(JSON.parse(error.request.response).data)[0][0]
+                      }
+                       setTimeout(() => {
                         this.error = false
                       }, 2000)
                   });
   },
  async create(files,description){
-  
-  this.userData.append('description',description)
+  if(!files.length)
+  {
+    this.toggle()
+    this.errormsg='Please upload a file'
+    this.error=true
+    setTimeout(() => {
+                        this.error = false
+                      }, 2000)
+                      
+  }else{
+    this.userData.append('description',description)
   files.forEach((file)=>{
   this.userData.append('files',file)
   })
   this.convertData()
   this.register()
+  }
+ 
  },
  convertData(){
   this.userData.append('name',this.user.name)

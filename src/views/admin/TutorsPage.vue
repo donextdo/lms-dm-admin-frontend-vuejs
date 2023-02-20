@@ -27,7 +27,7 @@
       border="left"
       width="30vw" prominent
       transition="scroll-x-reverse-transition"
-    >Something went wrong!</v-alert>
+    >{{errormsg }}</v-alert>
     <header class="header">
       <div class="th">
         <div class="td">
@@ -93,6 +93,7 @@
         @discard="onDiscard2"
         @accept="onDelete"
       />
+      <loader v-if="loader"/>
     </transition>
   </div>
 
@@ -104,7 +105,7 @@ import TableRow from '@/components/shared/TableRow.vue'
 import ProfileCard from '@/components/shared/ProfileCard.vue'
 import CommonForm from '@/components/shared/CommonForm.vue'
 import ButtonVue from '../../components/shared/Button.vue'
-
+import loader from '@/components/shared/loader.vue'
 import axios from 'axios';
 
 
@@ -117,7 +118,8 @@ export default {
       ProfileCard,
       CommonForm,
       ConfirmationDialogVue,
-      ButtonVue
+      ButtonVue,
+      loader
     },
 
     data () {
@@ -135,6 +137,8 @@ export default {
         editMode: false,
         tutor: null,
         tutorId:null,
+        loader:false,
+        errormsg:null,
       }
     },
 
@@ -170,15 +174,19 @@ export default {
         },
 
       async  get_tutors() {
+        this.loader=true
           await  axios
                 .get(this.$hostname+"/api/admin/tutors")
                 .then(response => {
                     if (response.status == 200) {
+                      this.loader=false
                         this.tutors = response.data.data;
                     }
 
                 })
-                .catch(error => {this.error=true
+                .catch(error => {
+                  this.loader=false
+                  this.error=true
                   setTimeout(() => {
                           this.error = false
                         }, 2000)
@@ -215,10 +223,13 @@ export default {
         },
 
        async onDelete() {
+        this.loader=true
+
          await axios
                 .delete(this.$hostname+"/api/admin/tutor/"+this.tutorId)
                 .then(response => {
                     if (response.status == 200) {
+                      this.loader=false
                       this.success = true
                         setTimeout(() => {
                           this.success = false
@@ -229,7 +240,17 @@ export default {
                     }
 
                 })
-                .catch(error => {this.error=true
+                .catch(error => {
+                  this.loader=false
+                  if(error.response.status==500)
+                      {
+                        this.errormsg='something went wrong'
+                      }
+                      else
+                      {
+                        this.errormsg=Object.values(JSON.parse(error.request.response).data)[0][0]
+                      }
+                  this.error=true
                   setTimeout(() => {
                           this.error = false
                         }, 2000)

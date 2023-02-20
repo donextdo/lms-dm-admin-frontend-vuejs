@@ -19,7 +19,7 @@
       border="left"
       width="30vw" prominent
       transition="scroll-x-reverse-transition"
-    >Something went wrong!</v-alert>
+    >{{errormsg}}</v-alert>
 
     <header class="header">
       <div class="th">
@@ -81,7 +81,7 @@
         @discard="onDiscard"
         @accept="onDelete"
       />
-    
+    <loader v-if="loader"/>
     </transition>
     <div class="row">
         <div class="col-10">
@@ -96,6 +96,7 @@
 </template>
 
 <script>
+import loader from '@/components/shared/loader.vue';
 import CommonFormVue from '@/components/shared/CommonForm.vue';
 import ConfirmationDialogVue from '@/components/shared/ConfirmationDialog.vue'
 import TableRow from '@/components/shared/TableRow.vue';
@@ -110,6 +111,7 @@ export default {
       ProfileCard,
       ConfirmationDialogVue,
       CommonFormVue,
+      loader
       // Button
 
     },
@@ -127,7 +129,9 @@ export default {
         success: null,
         error: false,
         resetpw: null,
-        laptop:null
+        laptop:null,
+        loader:false,
+        errormsg:null
       }
     },
     async created() {
@@ -136,8 +140,9 @@ export default {
     },
     methods: {
       async  shift(id,status,class_id){
-       
+           this.loader=true
           await axios.put(this.$hostname+"/api/admin/shiftSession/"+class_id+'/'+id)
+          this.loader=false
           this.get_students()
     
    },
@@ -167,6 +172,7 @@ export default {
         },
         
         async  get_students() {
+          this.loader=true
           if(sessionStorage.getItem('role')==1)
           {
             this.userType='admin'
@@ -179,11 +185,14 @@ export default {
 )
                 .then(response => {
                     if (response.status == 200) {
+                      this.loader=false
+
                         this.students = response.data.data.student;
                     }
 
                 })
                 .catch(error => {
+                  this.loader=false
                     console.log(error);
                 });
         },
@@ -198,10 +207,12 @@ export default {
         },
 
       async  onDelete() {
+        this.loader=true
          await axios
                 .delete(this.$hostname+"/api/admin/student/"+this.studentId)
                 .then(response => {
                     if (response.status == 200) {
+                      this.loader=false
                       this.success = true
                         setTimeout(() => {
                           this.success = false
@@ -212,8 +223,18 @@ export default {
                     }
 
                 })
-                .catch(error => {this.error=true
+                .catch(error => {
+                  if(error.response.status==500)
+                      {
+                        this.errormsg='something went wrong'
+                      }
+                      else
+                      {
+                        this.errormsg=Object.values(JSON.parse(error.request.response).data)[0][0]
+                      }
+                  this.error=true
                   setTimeout(() => {
+                    this.loader=false
                           this.error = false
                         }, 2000)
                     console.log(error);

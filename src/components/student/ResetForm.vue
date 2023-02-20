@@ -1,22 +1,51 @@
 <template>
     <v-card flat height="432" width="50%" color="transparent">
+      <v-alert
+      class="alert"
+      :value="success"
+      type="success"
+      border="left"
+      width="30vw" prominent
+      transition="scroll-x-reverse-transition"
+    > Password Reset successfully</v-alert>
+
+    <v-alert
+      class="alert"
+      :value="error"
+      type="error"
+      border="left"
+      width="30vw" prominent
+      transition="scroll-x-reverse-transition"
+    >{{errormsg}}</v-alert>
       <h2 class="title">Enter New Password</h2>
       <v-form>
         <div class="square"></div>
     <h2 class="heading"></h2>
 
     <div class="d-flex flex-column justify-center align-left form-control">
-      <TextInput label="Type the Password"  parent="page" type="password" :modelValue="user.password" @update:modelValue="newValue => user.password = newValue"/>
+      <TextInput label="Type the Password"  parent="page" :type="!check?'password':'text'" :modelValue="user.password" @update:modelValue="newValue => user.password = newValue"/>
 
     </div>
 
     <div class="d-flex flex-column justify-center align-left form-control">
-      <TextInput label="Confirm Password"  parent="page" type="password" :modelValue="user.password_confirmation" @update:modelValue="newValue => user.password_confirmation = newValue"/>
+      <TextInput label="Confirm Password"  parent="page" :type="!check?'password':'text'" :modelValue="user.password_confirmation" @update:modelValue="newValue => user.password_confirmation = newValue"/>
+      
+    </div>
+    <div class="d-flex flex-column justify-center align-left form-control">
+    <v-checkbox
+        dense
+        v-model="check"
 
+        color="warning"
+        label="show password"
+        hide-details
+        class="mt-0"
+      ></v-checkbox>
+      
     </div>
     <Button text="Reset" style="margin-right:10px" @click="reset"/>
     <Button text="Back" :transparent="true"  @click="$router.go(-1)"/>
-
+<loader v-if="loader" />
       </v-form>
     </v-card>
   </template>
@@ -25,11 +54,17 @@
   import Button from '../shared/Button.vue';
   import TextInput from '../shared/TextInput.vue';
   import { Form, } from 'vform';
+  import loader from '../shared/loader.vue'
   window.Form = Form;
   export default {
     name: "reset-form",
     data() {
     return {
+      success:false,
+      error:false,
+      errormsg:null,
+      check:false,
+      loader:false,
       laptop: null,
       user: new Form({
                 //user oject create
@@ -44,18 +79,38 @@
     },
     components:{
       TextInput,
-      Button
+      Button,
+      loader
     },
     methods:{
       async reset(){
+        this.loader=true
       await  this.user.post(this.$hostname+"/api/resetPassword")
                   .then(response => {
                       if (response.status == 200) {
                         console.log(response)
+                        this.success = true
+                          this.loader=false
+                      setTimeout(() => {
+                        this.success = false
+                      }, 2000)
                       }
                   })
                   .catch(error => {
                       console.log(error);
+                      this.error = true
+                      if(error.response.status==500)
+                      {
+                        this.errormsg='something went wrong'
+                      }
+                      else
+                      {
+                        this.errormsg=Object.values(JSON.parse(error.request.response).data)[0][0]
+                      }
+                      this.loader=false
+                      setTimeout(() => {
+                        this.error = false
+                      }, 2000)
                   });
       }
     }
