@@ -73,7 +73,7 @@
         </v-col>
       </v-row>
             <StudentDataUpload @toggle="toggle" v-if="showForm" @create="create"/>
-            <Button style="margin-left:27%;width:400px;margin-top: 2%;" text="Register" @click="toggle"/>
+            <Button style="margin-left:20%;width:400px;margin-top: 2%;" text="Register" @click="toggle"/>
 
       <div class="sing-in">Already have an account? <span @click="signin" >Sign In!</span></div>
 
@@ -211,9 +211,9 @@ export default {
 
 <style scoped>
 .title {
-  font-family: "Source Serif Pro", serif;
-  font-weight: 600;
-  font-size: 32px;
+  font-family: 'Reckless Neue' !important;
+  font-weight: 900 !important;
+  font-size: 32px !important;
   line-height: 32px;
   color: #251605;
   text-align: center;

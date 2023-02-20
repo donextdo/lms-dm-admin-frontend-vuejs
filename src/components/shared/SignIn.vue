@@ -19,7 +19,7 @@
     <h2 class="heading">{{ title }}</h2>
 
     <div class="d-flex flex-column justify-center align-left form-control">
-      <TextInputVue label="Email" style="  width: 510px;" parent="page" type="text" :modelValue="user.email" @update:modelValue="newValue => user.email = newValue"/>
+      <TextInputVue label="Email" style="width: 510px;" parent="page" type="text" :modelValue="user.email" @update:modelValue="newValue => user.email = newValue"/>
     </div>
 
     <div class="d-flex flex-column justify-center align-left form-control">
@@ -123,7 +123,9 @@ export default {
 </script>
 
 <style scoped>
+
 .square {
+  padding-top: 60px;
   height: 117px;
   width: 117px;
   background-color: #ffa500;
@@ -133,6 +135,7 @@ export default {
   font-size: 32px;
   line-height: 32px;
   margin-top: 31px;
+  font-family: 'Reckless Neue';
 }
 
 .v-text-field {
@@ -195,7 +198,7 @@ export default {
   }
 
   .heading {
-    font-size: 22px;
+    font-size: 28px;
     line-height: 24px;
     margin-top: 23px;
   }
