@@ -100,11 +100,13 @@
         <Request v-for="(student, index) in joinRequests" @showProfile="showProfile" :student="student" :key="index"/>
       </div>
     </div>
+    <loader v-if="loader"/>
     <StudentRequestProcess @refreshRequests="refreshRequests" v-if="form"  @closeProfile="closeProfile" :student="student" />
   </div>
 </template>
 
 <script>
+import loader from '@/components/shared/loader.vue'
 import utilizeTime from '../../time';
 import Class from '@/components/shared/Class.vue'
 import Request from '@/components/admin/Request.vue'
@@ -116,13 +118,15 @@ export default {
     components: {
       Class,
       Request,
-      StudentRequestProcess
+      StudentRequestProcess,
+      loader
 
     },
 
     data() {
       return {
         laptop:null,
+        loader:false,
         student:null,
         paymentType: 'All Payments',
         studentType: 'All Students',
@@ -169,14 +173,19 @@ export default {
             this.form=false
           },
           async dashboard_data(){
+            this.loader=true
             const {data} = await axios.get(`${this.$hostname}/api/admin/dashboard`)
+            this.loader=false
+
                this.upcomingClasses = data.data.upcoming.sessions
                this.joinRequests = data.data.requests.student
                this.studentCount = data.data.students
                this.classesCount = data.data.classes
           },
           async refreshRequests(){
+            this.loader=true
             const {data} = await axios.get(`${this.$hostname}/api/admin/refreshRequests`)
+            this.loader=false
                this.joinRequests = data.data.requests.student
                this.closeProfile()
           } 

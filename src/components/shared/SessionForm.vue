@@ -83,7 +83,7 @@
       data() {
         return {
             laptop: null,
-            
+            errormsg:null,
             success:false,
             error:false,
            
@@ -199,12 +199,27 @@
           await  this.member
                 .post(this.$hostname+"/api/"+this.userType+"/deleteSession")
                 .then(response => {
-                   alert(response)
-                })
+                   console.log(response)
+                   this.success=true
+                   setTimeout(() => {
+                        this.success = false
+                      }, 2000)
+                  })
 
                 .catch(error => {
-                   alert(error)
-                });
+                  if(error.response.status==500)
+                      {
+                        this.errormsg='something went wrong'
+                      }
+                      else
+                      {
+                        this.errormsg=Object.values(JSON.parse(error.request.response).data)[0][0]
+                      }              
+                      this.error=true
+                      setTimeout(() => {
+                        this.error = false
+                      }, 2000)
+                    });
           }
 
       },

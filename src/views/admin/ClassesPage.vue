@@ -14,11 +14,12 @@
       <router-view />
     </section>
     <CommonForm v-if="form" :editMode="editMode" :type="'class'" :info="classes" @getSubjects="applyChanges" @close-form="toggleForm" />
-
+     <loader v-if="loader"/>
   </div>
 </template>
 
 <script>
+import loader from '@/components/shared/loader.vue'
 import axios from 'axios'
 import ButtonVue from '../../components/shared/Button.vue'
 import ClassesContainer from '@/components/admin/classes/ClassesContainer.vue'
@@ -29,10 +30,12 @@ export default {
     components: {
       ClassesContainer,
       CommonForm,
-      ButtonVue
+      ButtonVue,
+      loader
     },
     data() {
       return {
+          loader:false,
           changed:false,
           laptop: null,
           form:false,
@@ -70,10 +73,13 @@ export default {
         },
 
        async get_subjects() {
+        this.loader=true
           await  axios
                 .get(this.$hostname+"/api/admin/subjects")
                 .then(response => {
                     if (response.status == 200) {
+                      this.loader=false
+
                         this.Subjects = response.data;
                         if(this.changed==false)
                         {
@@ -84,6 +90,7 @@ export default {
 
                 })
                 .catch(error => {
+                  this.loader=false
                     console.log(error);
                 });
         },
@@ -99,10 +106,12 @@ export default {
           this.get_classes_for_subjects()
         },
       async  get_classes_for_subjects() {
+        this.loader=true
            await axios
                 .get(this.$hostname+"/api/admin/classes/"+this.currentSubject)
                 .then(response => {
                     if (response.status == 200) {   
+                      this.loader=false
                         this.currentClasses = response.data.data.class1;
                         this.setTitle()
                         
@@ -110,6 +119,7 @@ export default {
 
                 })
                 .catch(error => {
+                  this.loader=false
                     console.log(error);
                 });
         },

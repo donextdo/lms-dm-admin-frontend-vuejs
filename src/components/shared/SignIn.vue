@@ -14,7 +14,7 @@
       border="left"
       width="30vw" prominent
       transition="scroll-x-reverse-transition"
-    >Something went wrong!</v-alert>
+    >{{errormsg}}</v-alert>
     <div class="square"></div>
     <h2 class="heading">{{ title }}</h2>
 
@@ -23,10 +23,9 @@
     </div>
 
     <div class="d-flex flex-column justify-center align-left form-control">
-      <TextInputVue label="Password" style="  width: 510px;" parent="page" type="password" :modelValue="user.password" @update:modelValue="newValue => user.password = newValue"/>
+      <TextInputVue label="Password" style="  width: 510px;" parent="page"  :type="!check?'password':'text'" :modelValue="user.password" @update:modelValue="newValue => user.password = newValue"/>
     </div>
-
-    <div class="d-flex justify-space-between align-center options-row">
+    <div class="d-flex flex-row justify-between align-left form-control">
       <v-checkbox
         dense
         v-model="user.remember"
@@ -34,10 +33,18 @@
         color="warning"
         label="Remember me"
         hide-details
-        class="mt-0"
+        class="mt-0 px-3"
       ></v-checkbox>
+      <v-checkbox
+        dense
+        v-model="check"
 
-      <a href="" class="forgot">Forgot password?</a>
+        color="warning"
+        label="show password"
+        hide-details
+        class="mt-0 px-3"
+      ></v-checkbox>
+      <a href="" class="forgot px-3">Forgot password?</a>
     </div>
 
     <v-btn
@@ -68,6 +75,8 @@ export default {
 
   data() {
     return {
+      errormsg:null,
+      check:false,
       error:false,
       laptop: null,
       user: new Form({
@@ -110,6 +119,14 @@ export default {
 
                 .catch(error => {
                     console.log(error);
+                    if(error.response.status==500)
+                      {
+                        this.errormsg='something went wrong'
+                      }
+                      else
+                      {
+                        this.errormsg=Object.values(JSON.parse(error.request.response).data)[0][0]
+                      }
                     this.error = true
                         setTimeout(() => {
                           this.error = false
