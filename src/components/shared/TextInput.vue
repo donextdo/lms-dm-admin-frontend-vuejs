@@ -205,17 +205,20 @@ export default {
 
 .input-label {
   margin-left: 14px;
-  font-family: "Axiforma";
+  font-style: normal;
+  /* font-family: "Axiforma" !important; */
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
-  line-height: 33px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  font-size: 16px;
+  line-height: 23px;
+  margin-top: 15px;
+  margin-bottom: 3px;
+  padding-right: 20px;
+  color: #251605;
 }
 .custom {
   background-color: var(--bgcol, white);
-  height: 45px;
+  height: 40px;
   margin-top: 1%;
   margin-bottom: 3%;
   margin-left: 14px;
@@ -243,7 +246,6 @@ input:focus {
   background-color: var(--bgcol, white);
   margin-right: 10%;
   padding-left: 3%;
-
   padding-right: 20%;
 }
 .rows {

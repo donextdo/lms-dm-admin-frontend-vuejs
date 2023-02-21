@@ -1,6 +1,6 @@
 <template>
   <div flat class="v">
-    <ButtonVue v-if="(role==1)" style="margin-top:3%;width:max-content" text="new User" @click="save" />
+    <ButtonVue v-if="(role==1)" style="margin-top:4%;width:max-content" text="new User" @click="save" />
 
       <div  class="row card mt-6" >
         <div class="col-6">

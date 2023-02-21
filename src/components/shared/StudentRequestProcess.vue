@@ -21,7 +21,7 @@
       transition="scroll-x-reverse-transition"
     >{{errormsg}}</v-alert>
     
-        <v-card :height="laptop ? '640px' : '870px'" :width="laptop ? '400px' : '620px'" class="d-flex flex-column align-center card" >
+        <v-card :height="laptop ? '600px' : '870px'" :width="laptop ? '700px' : '620px'" class="d-flex flex-column align-center card" >
 
           <h4 class="title">New Registration</h4>
           <div class="rowsingle">
