@@ -95,6 +95,7 @@
           <TextInputVue
             label="Subject you want to learn"
             parent="page"
+            ref="country"
             type="select"
             :initialValue="subjects.subjects[0]"
             :items="subjects.subjects"
@@ -215,7 +216,7 @@ export default {
     toggle() {
       this.showForm = !this.showForm;
     },
-
+   
     async get_subjects() {
       await axios
         .get(this.$hostname + "/api/subjects")
@@ -229,6 +230,7 @@ export default {
           console.log(error);
         });
     },
+    
     signin() {
       window.location.href = "/";
     },
@@ -297,6 +299,8 @@ export default {
       this.userData.append("remember", this.user.remember);
     },
   },
+
+
 };
 </script>
 
