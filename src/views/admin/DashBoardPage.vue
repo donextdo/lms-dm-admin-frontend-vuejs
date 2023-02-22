@@ -2,7 +2,7 @@
   <div class="dashboard-wrapper">
     <div class="analytics d-flex flex-column">
 
-      <v-card :height="laptop ? '180px' : '236px'" :width="laptop ? '360px' : '450px'" flat class="card-lg rounded-xl" >
+      <v-card :height="laptop ? '180px' : '236px'" :width="laptop ? '360px' : '450px'" flat class="card-lg" >
         <div class="combo-box">
           <v-combobox
               loading="false"
@@ -25,7 +25,7 @@
         </router-link>
       </v-card>
 
-      <v-card :height="laptop ? '180px' : '236px'" :width="laptop ? '360px' : '450px'" flat class="card-lg rounded-xl" >
+      <v-card :height="laptop ? '180px' : '236px'" :width="laptop ? '360px' : '450px'" flat class="card-lg" >
         <div class="combo-box">
           <v-combobox
               loading="false"
@@ -43,7 +43,7 @@
       </v-card>
 
 
-      <v-card :height="laptop ? '180px' : '236px'" :width="laptop ? '360px' : '450px'" flat class="card-lg rounded-xl" >
+      <v-card :height="laptop ? '180px' : '236px'" :width="laptop ? '360px' : '450px'" flat class="card-lg" >
         <div class="combo-box">
           <v-combobox
               loading="false"
@@ -128,8 +128,8 @@ export default {
         laptop:null,
         loader:false,
         student:null,
-        paymentType: 'All Payments',
-        studentType: 'All Students',
+        paymentType: 'Total Payment',
+        studentType: 'No. of Students Registered',
         classType: 'All Classes',
         studentCount:{local:0,global:0},
         classesCount:{local:0,global:0},
@@ -212,6 +212,7 @@ export default {
   position: relative;
   padding: 32px 25px;
   padding-left: 3rem;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -229,17 +230,16 @@ export default {
 }
 
 .card-title {
-  font-size: 1.2rem;
-  line-height: 2rem;
+  font-size: 15px !important;
+  line-height: 15px;
   font-weight: 500;
-  margin-bottom: 1rem;
 }
 
 .data {
   font-size: 2.5rem;
-  color: #492801;
-  line-height: 2rem;
-  font-weight: bold;
+  color: #492801 !important;
+  font-weight: 950;
+  
 }
 
 .link {
@@ -358,8 +358,8 @@ export default {
   }
 
   .card-title {
-    font-size: 1rem;
-    margin-bottom: 1rem;
+    font-size: 15px;
+    margin-top: 10px;
   }
 
   .data {

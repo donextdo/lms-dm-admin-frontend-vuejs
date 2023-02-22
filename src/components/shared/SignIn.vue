@@ -40,6 +40,7 @@
         @update:modelValue="(newValue) => (user.password = newValue)"
       />
     </div>
+    
     <div class="d-flex flex-row justify-content-between align-left form-control">
       <v-checkbox
         dense

@@ -263,7 +263,7 @@ export default {
     width: 100%;
     height: 150px;
     display: grid;
-    grid-template-columns: 2fr 1.5fr 0.8fr 1.5fr 2fr;
+    grid-template-columns: 2.9fr 1.8fr 1.6fr 1.5fr 2fr;
   }
 
   .th {
