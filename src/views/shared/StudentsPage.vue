@@ -19,7 +19,7 @@
       border="left"
       width="30vw" prominent
       transition="scroll-x-reverse-transition"
-    >Something went wrong!</v-alert>
+    >{{errormsg}}</v-alert>
 
     <header class="header">
       <div class="th">
@@ -82,13 +82,14 @@
         @discard="onDiscard"
         @accept="onDelete"
       />
-    
+    <loader v-if="loader"/>
     </transition>
   </div>
 
 </template>
 
 <script>
+ import loader from '@/components/shared/loader.vue'
 import ConfirmationDialogVue from '@/components/shared/ConfirmationDialog.vue'
 import TableRow from '@/components/shared/TableRow.vue';
 import ProfileCard from '@/components/shared/ProfileCard.vue'
@@ -103,7 +104,7 @@ export default {
       ProfileCard,
       ConfirmationDialogVue,
       CommonForm,
-
+      loader
     },
 
     data () {
@@ -120,8 +121,9 @@ export default {
         error: false,
         resetpw: null,
         userType:null,
-        laptop:null
-
+        laptop:null,
+        loader:false,
+        errormsg:null
       }
     },
     created() {
@@ -182,12 +184,16 @@ export default {
        async  shift(id,status){
          if(status=='active')
          {
+          this.loader=true
           await axios.put(this.$hostname+"/api/admin/blockStudent/"+id)
+          this.loader=false
           this.get_students()
          }
          else
          {
+          this.loader=true
           await axios.put(this.$hostname+"/api/admin/activateStudent/"+id)
+          this.loader=false
           this.get_students()
          }
         },
@@ -196,10 +202,12 @@ export default {
         },
 
       async  onDelete() {
+        this.loader=true
          await axios
                 .delete(this.$hostname+"/api/admin/student/"+this.studentId)
                 .then(response => {
                     if (response.status == 200) {
+                      this.loader=false
                       this.success = true
                         setTimeout(() => {
                           this.success = false
@@ -210,7 +218,17 @@ export default {
                     }
 
                 })
-                .catch(error => {this.error=true
+                .catch(error => {
+                  this.loader=false
+                  if(error.response.status==500)
+                      {
+                        this.errormsg='something went wrong'
+                      }
+                      else
+                      {
+                        this.errormsg=Object.values(JSON.parse(error.request.response).data)[0][0]
+                      }
+                      this.error=true
                   setTimeout(() => {
                           this.error = false
                         }, 2000)

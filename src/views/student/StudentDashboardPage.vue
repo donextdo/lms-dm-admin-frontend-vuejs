@@ -32,11 +32,13 @@
                 <MessagesVue v-for="(item, key) in messages" :item="item" :key="key" />
             </v-card>
           </div>  
-        </div>     
+        </div>  
+        <loader v-if="loader"/>   
     </div>
 </template>
 
 <script>
+import loader from '@/components/shared/loader.vue';
 import RecordingCard from './RecordingCard.vue';
 import MessagesVue from './Messages.vue';
 import axios from 'axios';
@@ -48,7 +50,8 @@ export default {
     laptop:null,
     recordings:null,
     classes:null,
-    messages:null
+    messages:null,
+    loader:false
   }
  },
  created(){
@@ -56,16 +59,19 @@ export default {
  },
  methods:{
   async dashboard_data(){
+            this.loader=true
             const {data} = await axios.get(`${this.$hostname}/api/student/dashboard`)
             this.recordings =data.data.recordings.sessions
             this.classes =data.data.classes.sessions
             this.messages=data.data.messages.inbox
+            this.loader=false
           }
 },
  components:{
     MessagesVue,
     ClassCard,
     RecordingCard,
+    loader
 }
 }
 </script>

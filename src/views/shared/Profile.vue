@@ -1,6 +1,6 @@
 <template>
   <div flat class="v">
-    <ButtonVue v-if="(role==1)" style="margin-top:3%;width:max-content" text="new User" @click="save" />
+    <ButtonVue v-if="(role==1)" style="margin-top:4%;width:max-content" text="new User" @click="save" />
 
       <div  class="row card mt-6" >
         <div class="col-6">
@@ -53,7 +53,7 @@
       <div class="col-12">
         <ButtonVue style="margin-left:3%;width:max-content" text="Save Changes" @click="save" />
         <ButtonVue  style="width:max-content;background-color:transparent;border:3px solid #ffa500;" text="Cancel" @click="reset" />
-
+        <loader v-if="loader"/>
 
       </div>
       
@@ -66,7 +66,7 @@
       border="left"
       width="30vw" prominent
       transition="scroll-x-reverse-transition"
-    >Password reset successfully</v-alert>
+    >Data reset successfully</v-alert>
 
     <v-alert
       class="alert"
@@ -81,6 +81,7 @@
 </template>
 
 <script>
+import loader from '@/components/shared/loader.vue';
 import TextInputVue from '@/components/shared/TextInput.vue';
 import axios from 'axios'
 import { Form } from 'vform'
@@ -90,6 +91,7 @@ export default {
     name: 'settings-vue',
      data(){
       return{
+        loader:false,
         user:new Form({
         name:"",
         contact_no:"",
@@ -109,7 +111,8 @@ export default {
      },
      components:{
       ButtonVue,
-      TextInputVue
+      TextInputVue,
+      loader
      },
      created(){
          this.set_data(),
@@ -125,7 +128,9 @@ export default {
       },
       async set_data()
       {
+        this.loader=true;
         const {data} = await axios.get(this.$hostname+'/api/getUser')
+        this.loader=false
         this.data =data.data
         console.log(this.data)
         this.user.name = this.data.name
@@ -135,7 +140,9 @@ export default {
       },
       async save()
       {
+        this.loader=true;
         const {data} = await this.user.post(this.$hostname+'/api/resetInfo')
+        this.loader=false
         this.data =data.data
         if(this.data){
           this.success = true
@@ -144,10 +151,10 @@ export default {
             this.success = false
           }, 2000)
         }else{
-          this.success = true
+          this.error = true
 
         setTimeout(() => {
-          this.success = false
+          this.error = false
         }, 2000)
         }
        

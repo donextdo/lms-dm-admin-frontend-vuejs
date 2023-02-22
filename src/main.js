@@ -20,6 +20,9 @@ Vue.use(VueRouter);
 Vue.prototype.$hostname = 'https://thesupercarowner.com'
 sessionStorage.setItem('url',' https://front.thesupercarowner.com')
 
+//  Vue.prototype.$hostname = 'https://thesupercarowner.com'
+//  sessionStorage.setItem('url',' https://front.thesupercarowner.com')
+
 // const router = new VueRouter({
 //   mode: 'history',
 //   routes: [

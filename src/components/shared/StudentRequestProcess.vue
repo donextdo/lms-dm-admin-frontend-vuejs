@@ -19,9 +19,9 @@
       border="left"
       width="30vw" prominent
       transition="scroll-x-reverse-transition"
-    >Something went wrong!</v-alert>
+    >{{errormsg}}</v-alert>
     
-        <v-card :height="laptop ? '640px' : '870px'" :width="laptop ? '400px' : '620px'" class="d-flex flex-column align-center card" >
+        <v-card :height="laptop ? '600px' : '870px'" :width="laptop ? '700px' : '620px'" class="d-flex flex-column align-center card" >
 
           <h4 class="title">New Registration</h4>
           <div class="rowsingle">
@@ -123,6 +123,7 @@
   
       data() {
         return {
+            errormsg:null,
             classes: null,
             grades:null,
             laptop: null,
@@ -201,6 +202,14 @@
                 })
                 .catch(error => {
                     console.log(error);
+                    if(error.response.status==500)
+                      {
+                        this.errormsg='something went wrong'
+                      }
+                      else
+                      {
+                        this.errormsg=Object.values(JSON.parse(error.request.response).data)[0][0]
+                      }
                     this.error =true;
 
                 });
@@ -222,8 +231,14 @@
                 })
                 .catch(error => {
                     console.log(error);
-                    alert(error)
-
+                    if(error.response.status==500)
+                      {
+                        this.errormsg='something went wrong'
+                      }
+                      else
+                      {
+                        this.errormsg=Object.values(JSON.parse(error.request.response).data)[0][0]
+                      }
                     this.error =true;
 
                 });
@@ -243,6 +258,14 @@
                 })
                 .catch(error => {
                     console.log(error);
+                    if(error.response.status==500)
+                      {
+                        this.errormsg='something went wrong'
+                      }
+                      else
+                      {
+                        this.errormsg=Object.values(JSON.parse(error.request.response).data)[0][0]
+                      }
                     this.error =true;
 
                 });
@@ -260,6 +283,14 @@
                 })
                 .catch(error => {
                     console.log(error);
+                    if(error.response.status==500)
+                      {
+                        this.errormsg='something went wrong'
+                      }
+                      else
+                      {
+                        this.errormsg=Object.values(JSON.parse(error.request.response).data)[0][0]
+                      }
                     this.error =true;
 
                 });

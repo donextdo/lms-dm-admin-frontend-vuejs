@@ -19,7 +19,7 @@
       border="left"
       width="30vw" prominent
       transition="scroll-x-reverse-transition"
-    >Something went wrong!</v-alert>
+    >{{errormsg}}</v-alert>
     
         <v-card :height="laptop ? '540px' : '770px'" :width="laptop ? '400px' : '620px'" class="d-flex flex-column align-center card" >
 
@@ -140,6 +140,7 @@
   
       data() {
         return {
+            errormsg:null,
             subjects: null,
             grades:null,
             laptop: null,
@@ -370,7 +371,15 @@
                           this.$emit('getStudents')
                          }
                       }    
-                      console.log(error);        
+                      console.log(error); 
+                      if(error.response.status==500)
+                      {
+                        this.errormsg='something went wrong'
+                      }
+                      else
+                      {
+                        this.errormsg=Object.values(JSON.parse(error.request.response).data)[0][0]
+                      }                     
                     this.error =true;
                 });
           },
