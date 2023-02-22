@@ -21,7 +21,7 @@
       transition="scroll-x-reverse-transition"
     >{{errormsg}}</v-alert>
     
-        <v-card :height="laptop ? '600px' : '870px'" :width="laptop ? '700px' : '620px'" class="d-flex flex-column align-center card" >
+        <v-card :height="laptop ? '600px' : '730px'" :width="laptop ? '700px' : '720px'" class="d-flex flex-column align-center card rounded" >
 
           <h4 class="title">New Registration</h4>
           <div class="rowsingle">
@@ -31,15 +31,15 @@
           <div class="rows">
             <div class="rowsingle" >
                 <p class="para">Student Name</p>
-                <h6 class="hed5" >{{student.user.name}}</h6>
+                <h5 >{{student.user.name}}</h5>
                 <p class="para">Mobile Number</p>
-                <h6>{{student.user.contact_no}}</h6>
+                <h5>{{student.user.contact_no}}</h5>
             </div>  
             <div class="rowsingle" >
                 <p class="para">Country</p>
-                <h6 >{{student.country.name}}</h6>
+                <h5 >{{student.country.name}}</h5>
                 <p class="para">Email</p>
-                <h6 >{{student.user.email}}</h6>    
+                <h5 >{{student.user.email}}</h5>    
             </div>
           </div>
           <div  class="rowsingle" >
@@ -53,7 +53,7 @@
             <div class="rowsingle" >
                 <p class="para">Subject</p>
                 <div>
-                  <h6 class="hed5" v-for="(item, index) in studentIndetail" :key="index" >{{item.subject}}</h6>
+                  <h5 v-for="(item, index) in studentIndetail" :key="index" >{{item.subject}}</h5>
                 </div>
             </div>  
           </div>
@@ -63,7 +63,7 @@
             </div>  
           </div>
           <div class="rowsingle">
-            <h6 class="hed5" >knowledge</h6>
+            <h5  >knowledge</h5>
           </div>
           <div  class="rowsingle" >
              <div class="line"></div>
@@ -89,9 +89,14 @@
 
             
 
-          <div style="margin-top:10px" class="rows " >
-            <ButtonVue @click="accept" text="Accept" />
-            <ButtonVue transparent="true" text='Decline'/>
+          <div style="margin-top:10px" class="rows  " >
+            <div class="col text-right">
+              <ButtonVue @click="accept" text="Accept" />
+            </div>
+            <div  class="col text-left">
+              <ButtonVue transparent="true" class="mt-2" text='Decline'/>
+            </div>
+
 
           </div>
 
@@ -321,6 +326,7 @@
 
     }
   .hed5{
+    font-size: 15px ;
     margin-top: 0;
     padding-top: 0;
     margin-bottom: 0;
@@ -331,6 +337,8 @@
     height: 3px;
     margin-block: 8px;
     opacity:0.5;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
     .label{
@@ -344,9 +352,9 @@
     .para{
         opacity: 0.5;
         color:#251605;
-        margin-top:20px;  
+        margin-top:10px;  
         margin-bottom: 0;
-        font-size: x-small;
+        font-size: 12px;
     }
     .rows{
       width:95%;
@@ -390,12 +398,13 @@
   .card {
     position: relative;
     padding-inline: 55px;
-    padding-top: 74px;
+    padding-top: 40px;
     padding-bottom: 62px;
+    border-radius: 3% !important;
   }
 
   .title {
-    font-size: 32px !important;
+    font-size: 28px !important;
     font-weight: bold;
     line-height: 32px;
     color: #251605;
@@ -411,6 +420,7 @@
   .form-control {
     width: 100%;
     gap: 12px;
+    margin-bottom: 10px;
   }
 
   .label {

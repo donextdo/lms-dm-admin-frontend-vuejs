@@ -23,6 +23,7 @@
             </v-avatar> 
          </div>
           <v-file-input id="file" loading="false" style="display:none" v-model="file"  multiple chips ></v-file-input>
+          <ButtonVue :transparent="true" class="mt-3" style="width:max-content; font-size: 14px;" text="Remove Photo" @click="reset" />
         </div>
       </div>
       <hr/>
@@ -39,16 +40,16 @@
       <hr/>
       <div class="row card mt-6" >
         <div class="col-6">
-          <h1>Your Details</h1>
-          <p>Update your personal details here.</p>
+          <h1>Security</h1>
+          <p>Update your security details regularly</p>
         </div>
         <div class="col-6">
           <TextInputVue label="Email" labelType="top" type="text" :modelValue="user.email" @update:modelValue="newValue => user.email = newValue"/>
         </div>
       </div>
      <div class="row">
-      <div class="col-10">
-        <ButtonVue :transparent="true" style="width:max-content" text="Reset Password" @click="reset" />
+      <div class="col-7" style="margin-left: 7%;">
+        <ButtonVue :transparent="true" style="width:max-content; font-size: 14px;" text="Reset Password" @click="reset" />
       </div>
       <div class="col-12">
         <ButtonVue style="margin-left:3%;width:max-content" text="Save Changes" @click="save" />
@@ -207,7 +208,7 @@ p {
     
   }
 .right{
-  margin-left:30%;
+  margin-left:7%;
 }
 .img1 {
   position:absolute;

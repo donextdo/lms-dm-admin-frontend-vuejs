@@ -3,7 +3,7 @@
     :height="laptop ? '460px' : '634px'"
     :width="laptop ? '380px' : '510px'"
     flat
-    class="d-flex flex-column align-center"
+    class="d-flex flex-column"
     color="transparent"
   >
     <v-alert
@@ -16,8 +16,10 @@
       transition="scroll-x-reverse-transition"
       >{{ errormsg }}</v-alert
     >
-    <div class="square"></div>
-    <h2 class="heading">{{ title }}</h2>
+
+    
+    <div class="square mx-auto"></div>
+    <h2 class="heading text-center">{{ title }}</h2>
 
     <div class="d-flex flex-column justify-center align-left form-control">
       <TextInputVue
@@ -40,15 +42,29 @@
         @update:modelValue="(newValue) => (user.password = newValue)"
       />
     </div>
-    <div class="d-flex flex-row justify-content-between align-left form-control">
-      <v-checkbox
-        dense
-        v-model="user.remember"
-        color="warning"
-        label="Remember me"
-        hide-details
-        class="mt-0 px-3"
-      ></v-checkbox>
+    <div class="container mt-6">
+
+      <div class="row">
+
+        <div class="col">
+          <v-checkbox
+            dense
+            v-model="user.remember"
+            color="warning"
+            label="Remember me"
+            hide-details
+            class="mt-0"
+          ></v-checkbox>
+        </div>
+
+        <div class="col text-right">
+          <a href="" class="forgot ">Forgot password?</a>
+
+        </div>
+
+      </div>
+
+
       <!-- <v-checkbox
         dense
         v-model="check"
@@ -57,7 +73,6 @@
         hide-details
         class="mt-0 px-3"
       ></v-checkbox> -->
-      <a href="" class="forgot px-3">Forgot password?</a>
     </div>
 
     <v-btn
@@ -66,7 +81,7 @@
       :height="laptop ? '55px' : '62px'"
       elevation="0"
       @click="login()"
-      class="btn rounded-lg"
+      class="btn rounded-lg form-control"
       >Sign In</v-btn
     >
     <div class="sing-in">
@@ -195,11 +210,11 @@ export default {
 }
 
 .btn {
-  margin-top: 10%;
+  margin-top: 5%;
   font-size: 18px !important;
   text-transform: capitalize;
   font-weight: 800 !important;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 .sing-in {
   margin-top: auto;
