@@ -22,7 +22,7 @@
   <v-btn
     v-else-if="modal"
     color="#ffa500"
-    :width="laptop ? '100px' : '142px'"
+    :width="laptop ? '100px' : '115px'"
     :height="laptop ? '40px' : '45px'"
     elevation="0"
     class="btn2 rounded-lg"
@@ -53,7 +53,7 @@
   <v-btn
     v-else-if="!modal"
     color="#ffa500"
-    :width="laptop ? '100px' : '142px'"
+    :width="laptop ? '100px' : '115px'"
     :height="laptop ? '40px' : '45px'"
     elevation="0"
     class="btn rounded-lg"
@@ -88,7 +88,7 @@ export default {
   width: auto;
   height: 20px;
   margin-top: 8%;
-  font-size: 18px !important;
+  font-size: 13px !important;
   text-transform: capitalize;
   font-weight: bold;
 }

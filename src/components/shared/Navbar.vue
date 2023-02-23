@@ -170,9 +170,8 @@ export default {
 }
 .title {
   font-size: 25px !important;
-  font-weight: bold;
+  font-weight: 900 !important;
   line-height: 1.5;
-
 }
 
 .admin-data {

@@ -1,7 +1,7 @@
 <template>
     <div class="overlay">
     
-        <v-card :height="laptop ? '600px' : '1062px'" :width="laptop ? '380px' : '642px'" class="d-flex flex-column align-center card">
+        <v-card :height="laptop ? '600px' : '1062px'" :width="laptop ? '400px' : '642px'" class="d-flex flex-column align-center card">
 
             <div style=" display: flex;justify-content: center; align-items: center;" class="avatar">
                <!--<v-img :src="require(`@/assets/${info.profile}.png`)">></v-img>--> 
@@ -21,15 +21,15 @@
                         <p class="key">{{ type === 'tutor' ? 'Tutor Name' : 'Student Name'}}</p>
                         <p class="value" >{{ info.user.name }}</p>
                     </div>
-                    <div class="block">
+                    <!-- <div class="block">
                         <p class="key">{{ type === 'tutor' ? 'Subjects Taught' : 'Subjects'}}</p>
                         <p class="value" v-for="(item, index) in subjects"  :item="item" :key="index"  v-show="type==='student'">{{item.name}}</p>
                         <p class="value" v-show="type==='tutor'">{{info.subject.name}}</p>
-                    </div>
+                    </div> -->
                     <div class="block ">
                         <p class="key">{{ type === 'tutor' ? 'Grades Taught' : 'Grade'}}</p>
                         <div class="ajes">
-                            <p class="value " v-for="(item, index) in grades" :item="item" :key="index"  >{{item.name,}}</p>
+                            <p class="value " v-for="(item, index) in grades" :item="item" :key="index"  >Grade {{item.name,}}</p>
 
                         </div>
                     </div>
