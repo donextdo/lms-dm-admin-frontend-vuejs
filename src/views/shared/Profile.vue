@@ -75,7 +75,7 @@
       border="left"
       width="30vw" prominent
       transition="scroll-x-reverse-transition"
-    >Something went wrong!</v-alert>
+    >{{errormsg}}</v-alert>
   </div>
 
 </template>
@@ -91,6 +91,7 @@ export default {
     name: 'settings-vue',
      data(){
       return{
+        errormsg:null,
         loader:false,
         user:new Form({
         name:"",
@@ -141,23 +142,32 @@ export default {
       async save()
       {
         this.loader=true;
-        const {data} = await this.user.post(this.$hostname+'/api/resetInfo')
+        const {data} = await this.user.post(this.$hostname+'/api/resetInfo').then(response=>{
         this.loader=false
         this.data =data.data
         if(this.data){
           this.success = true
-
+            console.log(response)
           setTimeout(() => {
             this.success = false
           }, 2000)
-        }else{
+        }}).catch(error=>{
+          if(error.response.status==500)
+                      {
+                        this.errormsg='something went wrong'
+                      }
+                      else
+                      {
+                        this.errormsg=Object.values(JSON.parse(error.request.response).data)[0][0]
+                      }
           this.error = true
-
+         
         setTimeout(() => {
           this.error = false
         }, 2000)
-        }
-       
+          
+        })
+      
               
       }
     }
