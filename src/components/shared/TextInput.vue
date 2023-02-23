@@ -15,7 +15,8 @@
             @input="$emit('update:modelValue', $event.target.value)"
             v-bind="$attrs"
           />
-          <select
+          <!---->
+          <!-- <select
             @change="$emit('update:modelValue', $event.target.value)"
             v-else
             class="custom"
@@ -27,7 +28,24 @@
             >
               {{ item.name }}
             </option>
-          </select>
+          </select> -->
+          <!---->
+           <div v-else style="position:relative;width:100% " >
+               <div class="griditfull "  @click="shift">
+                 <div v-if="initial" class="item" >{{initial}}</div>
+                 <div ref="img" style="color:#FFA500" class="item">&#9660;</div>
+               </div>  
+               <div v-if="user" ref="outer" class="outer">
+                  <div v-for="(item, index) in items" :key="index"
+                  @click="apply(item)"  class="rows rows-select">{{item.user.name}}</div>   
+               </div>
+               <div v-else ref="outer" class="outer">
+                  <div v-for="(item, index) in items" :key="index"
+                  @click="apply(item)"  class="rows rows-select"><div class="rowtext">{{item.name}}</div></div>   
+               </div>
+          </div>
+           <!---->
+
         </div>
       </div>
       <div v-else></div>
@@ -120,8 +138,13 @@
   </div>
 </template>
 <script>
+
 export default {
   mounted() {
+    window.addEventListener('changed-localstorage-changed', (event) => {
+    this.changed = event.detail.storage;
+    alert(this.changed)
+  });
     this.initialValue
       ? this.user
         ? (this.initial = this.initialValue.user.name)
@@ -134,6 +157,7 @@ export default {
   data() {
     return {
       initial: null,
+      changed:null
     };
   },
   props: {
@@ -187,6 +211,44 @@ export default {
       default: null,
     },
   },
+  methods:{
+    shift(){
+    if(   this.$refs.outer.style.display=='block')
+    {
+      this.$refs.outer.style.display='none'
+      this.$refs.img.removeAttribute("class", "rotated-image");
+      this.$refs.img.setAttribute("class", "item");
+
+
+
+    } 
+    else
+    {
+      this.$refs.img.setAttribute("class", "rotated-image");
+      this.$refs.outer.style.display='block'
+
+    } 
+   },
+   apply(item)
+   {
+     this.shift() 
+     this.user  ? this.initial = item.user.name : this.initial = item.name
+     this.$emit('update:modelValue', item.id)
+   },
+  },
+  computed: {
+    localStorageValue() {
+      // Access the localStorage value
+      return sessionStorage.getItem('change');
+    }
+  },
+watch: {
+  localStorageValue(newValue) {alert()
+      console.log(newValue)
+        // do something
+        this.shift()
+    }
+}
 };
 </script>
 <style scoped>
@@ -216,6 +278,16 @@ export default {
   padding-right: 20px;
   color: #251605;
 }
+.form-control {
+    width: 100%;
+    gap: 12px;
+    background-color:#FEF3EC;
+    height:45px;
+    color:rgba(100,100,100,0.5);
+    padding-left:5%;
+    font-size: 12px !important;
+    border-radius: var(--brd,5px);
+  }
 .custom {
   background-color: var(--bgcol, white);
   height: 40px;
@@ -223,13 +295,36 @@ export default {
   margin-bottom: 3%;
   margin-left: 14px;
   padding-left: 3%;
+  padding-right:3%;
   width: 100%;
   border: none;
   border-radius: 5px;
   color: #251605;
+  cursor: pointer;
+
   /* opacity:0.5; */
 }
-
+.outer{
+  background-color: var(--bgcol, white);
+      position:absolute; 
+      border-left:1px solid white;
+      border-right:1px solid white ;
+       border-bottom: 1px solid white; 
+       z-index: 99;
+       display:none;
+       width:100%;
+       max-height:230px;
+       overflow: auto;
+  margin-bottom: 3%;
+  margin-left: 14px;
+  padding-left: 0px;
+  padding-right:3%;
+  width: 97%;
+   }
+::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(78%) sepia(47%) saturate(4973%) hue-rotate(360deg) brightness(102%) contrast(103%);
+}
 textarea:focus,
 select:focus,
 input:focus {
@@ -255,7 +350,29 @@ input:focus {
   width: auto;
   height: auto;
 }
+.rows-select:hover{
+  background-color:#FFA500;
+  color: white;
+  margin:none;
+  padding:none;
+  cursor: pointer;
 
+}
+
+.rotated::after {
+  transform: rotate(180deg);
+}
+
+.rotated-image {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+          color:black;
+
+}
+.item{
+      color:black;
+      padding-top:6px;
+   }
 .c2 {
   opacity: 0.5;
   width: 80%;
@@ -264,6 +381,7 @@ input:focus {
   margin-right: 10%;
   padding-left: 3%;
   padding-right: 20%;
+  
 }
 .c3 {
   padding-top: 1%;
@@ -274,5 +392,22 @@ input:focus {
   margin-right: 10%;
   padding-left: 3%;
   padding-right: 20%;
+  cursor: pointer;
+
+}
+.griditfull{
+  background-color: var(--bgcol, white);
+  height: 40px;
+  margin-top: 1%;
+  margin-left: 14px;
+  padding-left: 3%;
+  padding-right:3%;
+  width: 97%;
+  border: none;
+  border-radius: 5px;
+  color: #251605;
+  display: grid;
+  grid-template-columns:96% 4%; 
+  cursor: pointer;
 }
 </style>
