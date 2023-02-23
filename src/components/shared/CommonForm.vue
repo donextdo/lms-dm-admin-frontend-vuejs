@@ -21,7 +21,7 @@
       transition="scroll-x-reverse-transition"
     >{{errormsg}}</v-alert>
     
-        <v-card :height="laptop ? '540px' : '770px'" :width="laptop ? '400px' : '620px'" class="d-flex flex-column align-center card" >
+        <v-card :height="laptop ? '515px' : '770px'" :width="laptop ? '400px' : '620px'" class="d-flex flex-column align-center card" >
 
           <h4 class="title">{{ editMode ? 'Edit '+type+' details' : 'Add new '+type[0].toUpperCase() + type.slice(1) }}</h4>
           <div class="rowsingle" v-if="type !== 'class'"  >

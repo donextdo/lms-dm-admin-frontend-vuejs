@@ -90,8 +90,15 @@
             
 
           <div style="margin-top:10px" class="rows " >
+            <div class="col text-right">
+              <ButtonVue   style="width:max-content;background-color:transparent;border:3px solid #ffa500;" text='Decline'/>
+            </div>
+            
+            <div class="col text-left">
             <ButtonVue @click="accept" text="Accept" />
-            <ButtonVue transparent="true" text='Decline'/>
+            </div>
+
+
 
           </div>
 
@@ -353,7 +360,7 @@
       display: grid;
       grid-template-columns:50% 50%;
       margin-right:4%;
-      margin-top:1%;
+   
       margin-bottom:1%;
       gap: 5%;
 

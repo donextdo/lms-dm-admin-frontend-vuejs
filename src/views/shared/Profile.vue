@@ -23,34 +23,35 @@
             </v-avatar> 
          </div>
           <v-file-input id="file" loading="false" style="display:none" v-model="file"  multiple chips ></v-file-input>
+          <ButtonVue :transparent="true" class="mt-3" style="width:max-content; font-size: 14px;" text="Remove Photo" @click="reset" />
         </div>
       </div>
       <hr/>
       <div  class="row card mt-6 " >
-        <div class="col-6">
+        <div class="col-6 mx-2">
           <h1>Your Details</h1>
           <p>Update your personal details here.</p>
         </div>
-        <div class="col-6">
+        <div class="col-5">
               <TextInputVue label="Full name"  parent="page" type="text" :modelValue="user.name" @update:modelValue="newValue => user.name = newValue"/>
               <TextInputVue label="Mobile number"  parent="page" type="text" :modelValue="user.contact_no" @update:modelValue="newValue => user.contact_no = newValue"/>
         </div> 
       </div>
       <hr/>
       <div class="row card mt-6" >
-        <div class="col-6">
-          <h1>Your Details</h1>
-          <p>Update your personal details here.</p>
+        <div class="col-6 mx-2">
+          <h1>Security</h1>
+          <p>Update your security details regularly</p>
         </div>
-        <div class="col-6">
+        <div class="col-5">
           <TextInputVue label="Email" labelType="top" type="text" :modelValue="user.email" @update:modelValue="newValue => user.email = newValue"/>
         </div>
       </div>
      <div class="row">
-      <div class="col-10">
-        <ButtonVue :transparent="true" style="width:max-content" text="Reset Password" @click="reset" />
+      <div class="col-7" style="margin-left: 11%;">
+        <ButtonVue :transparent="true" style="width:max-content; font-size: 14px;" text="Reset Password" @click="reset" />
       </div>
-      <div class="col-12">
+      <div class="col-11">
         <ButtonVue style="margin-left:3%;width:max-content" text="Save Changes" @click="save" />
         <ButtonVue  style="width:max-content;background-color:transparent;border:3px solid #ffa500;" text="Cancel" @click="reset" />
         <loader v-if="loader"/>
@@ -217,7 +218,7 @@ p {
     
   }
 .right{
-  margin-left:30%;
+  margin-left: 10%;
 }
 .img1 {
   position:absolute;
