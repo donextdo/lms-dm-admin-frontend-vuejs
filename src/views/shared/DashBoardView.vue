@@ -26,7 +26,8 @@ export default {
         return {
             laptop:null,
             title: 'Dashboard',
-            name: 'John Doe',
+            name: 'Admin', 
+            // John Doe
             profile: 'avatar',
             
         }

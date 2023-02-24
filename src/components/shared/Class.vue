@@ -1,6 +1,6 @@
 <template>
     <v-card :height="laptop ? '140px' : '168px'" width="100%" flat class="card rounded-xl" >
-        <h2 v-if="type" class="class-title">{{ classs.grade.name +' '+classs.subject.name+' '+classs.country.name }}</h2>
+        <h2 v-if="type" class="class-title"> {{ 'Grade' + classs.grade.name +' '+classs.subject.name+' - '+classs.country.name }}</h2>
         <h2 v-else class="class-title">{{ upcomingClass.grade.name +' '+upcomingClass.subject.name+' '+upcomingClass.country.name }}</h2>
 
         <div class="time">
@@ -77,7 +77,7 @@
           display: grid;
           grid-template-columns: repeat(10, 1fr);
           flex-direction: column;      
-          border-left: 20px solid #FFA500;
+          border-left: 8px solid #FFA500 !important;
           align-items: center;
           row-gap: 1rem;
       }

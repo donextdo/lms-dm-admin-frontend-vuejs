@@ -115,13 +115,14 @@
  <style scoped>
  .form-control {
     width: 100%;
-    gap: 12px;
+    gap: 20px;
     background-color:#FEF3EC;
     height:45px;
     color:rgba(100,100,100,0.5);
-    padding-left:5%;
+    padding-left:3%;
     font-size: 12px !important;
     border-radius: var(--brd,5px);
+    cursor: pointer;
   }
   textarea:focus, select:focus, input:focus{
     outline: none;
@@ -132,7 +133,7 @@
 }
 .griditfull{
   display: grid;
-  grid-template-columns:85% 15%; 
+  grid-template-columns:88% 10%; 
 }
 .label {
     font-size: 12px !important;
@@ -178,7 +179,7 @@
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
           transform-origin: 12.5% 50%;
-          color:black;
+          color:#FFA500;
       font-size: 12px;
       padding-top:12px;
       opacity: 0.5;

@@ -273,7 +273,7 @@ export default {
   /* font-family: "Axiforma" !important; */
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 23px;
   margin-top: 15px;
   margin-bottom: 3px;
@@ -300,6 +300,7 @@ export default {
   padding-right:3%;
   width: 100%;
   border: none;
+  font-size: 13px !important;
   border-radius: 5px;
   color: #251605;
   cursor: pointer;

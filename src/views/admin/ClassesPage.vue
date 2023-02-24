@@ -2,7 +2,7 @@
   <div class="classes">
     <header class="header d-flex align-end justify-space-between">
       <nav class="nav d-flex" >
-        <span v-for="(item, index) in Subjects.data.subjects" :key="index" :data-subject="item.id" :aria-selected="currentSubject == item.id" class="link" @click="toggleSubject">{{ item.name }}</span>
+        <span v-for="(item, index) in Subjects.data.subjects" :key="index" :data-subject="item.id" :aria-selected="currentSubject == item.id" class="link" @click="toggleSubject">{{ item.name }} Classes</span>
       </nav>
       <div style="position:relative">
       <ButtonVue text="New Class" @click="toggleForm"/>
@@ -176,6 +176,7 @@ export default {
     line-height: 32px;
     margin-bottom: 6px;
     position: relative;
+    cursor: pointer;
   }
 
   .link::before {

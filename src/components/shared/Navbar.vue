@@ -89,7 +89,7 @@
     </v-btn>
 
     <router-link v-if="role != 3" to="#" class="admin-data">
-      <v-avatar size="20px">
+      <v-avatar size="40px">
         <v-img :src="require(`@/assets/${profile}.png`)"></v-img>
       </v-avatar>
 
@@ -170,14 +170,12 @@ export default {
 }
 .title {
   font-size: 25px !important;
-  font-weight: bold;
+  font-weight: 900 !important;
   line-height: 1.5;
-  margin-top: 3%;
 }
 
 .admin-data {
-  margin-top: 1%;
-  padding: 10px;
+  padding-right: 15px !important;
   border-radius: 60px;
   border: 2px solid #fe3f49;
   display: flex;
@@ -187,8 +185,8 @@ export default {
 
 .admin-data > span {
   color: #000;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 15px !important;
+  font-weight: 900;
 }
 
 @media (max-width: 1400px) {
