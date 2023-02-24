@@ -4,9 +4,9 @@
      <div>
       <div class="withH">
         <div>
-          <h2 style="position:absolute">Upcoming Classes</h2>
+          <h2 style="font-size: large; position:absolute">Upcoming Classes</h2>
           <div>
-            <a  @click="$router.push({name:'Class'})" style="float:right; align:right; font-weight:bold;padding-bottom:3px; border-bottom-width:1px;border-bottom-style:solid;  position: relative; right:3%; color:red;">View all upcoming classes </a>
+            <a  @click="$router.push({name:'Class'})" style="float:right; align:right;padding-bottom:3px; border-bottom-width:1px;border-bottom-style:solid;  position: relative; right:3%; color:red;">View all upcoming classes </a>
           </div>
         </div>
         
@@ -16,8 +16,8 @@
       </div>   
       <div class="withH">
         <div style="margin-top:5%">
-          <h2 style="position:absolute">Watch Recordings</h2>
-          <a @click="$router.push({name:'pastRecordings'})" style="float:right; align:right; font-weight:bold;padding-bottom:3px; border-bottom-width:1px;border-bottom-style:solid;  position: relative; right:3%; color:red;">View all Recordings </a>
+          <h2 style="font-size: large; position:absolute">Watch Recordings</h2>
+          <a @click="$router.push({name:'pastRecordings'})" style="float:right; align:right;padding-bottom:3px; border-bottom-width:1px;border-bottom-style:solid;  position: relative; right:3%; color:red;">View all Recordings </a>
         </div>
         
          <div class="analytics d-flex flex-row" >

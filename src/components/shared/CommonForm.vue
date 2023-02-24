@@ -32,7 +32,7 @@
         {{
           editMode
             ? "Edit " + type + " details"
-            : "Add new " + type[0].toUpperCase() + type.slice(1)
+            : "Add new " + type
         }}
       </h4>
       <div class="rowsingle" v-if="type !== 'class'">
@@ -159,7 +159,7 @@
       <div class="rowsingle" v-if="type !== 'class'">
         <div class="form-control" v-if="type !== 'class'">
           <ModelTextInputVue
-            placeholder="Email"
+          :placeholder="'Mention the email of the ' + type"
             type="text"
             label=" Email"
             :modelValue="member.email"
@@ -170,9 +170,9 @@
       <div class="rowsingle" v-if="type !== 'class'">
         <div class="form-control" v-if="type !== 'class'">
           <ModelTextInputVue
-            placeholder="Contact no"
             type="text"
-            label=" Contact no"
+            label=" Contact Number"
+            :placeholder="'Mention the number of the ' + type"
             :modelValue="member.contact_no"
             @update:modelValue="(newValue) => (member.contact_no = newValue)"
           />

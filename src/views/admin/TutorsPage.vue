@@ -287,7 +287,7 @@ export default {
     width: 100%;
     height: 150px;
     display: grid;
-    grid-template-columns: 3fr 2fr 1.5fr 4fr;
+    grid-template-columns: 2.7fr 2fr 1.5fr 4fr;
   }
 
   .th {

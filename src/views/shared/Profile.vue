@@ -6,7 +6,12 @@
       text="new User"
       @click="save"
     />
-
+    <ButtonVue
+      v-else
+      style="margin-top: 4%; visibility: hidden; width: max-content"
+      text="new User"
+      @click="save"
+    />
     <div class="row card mt-6">
       <div class="col-6">
         <h3>User Profile</h3>

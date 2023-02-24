@@ -15,14 +15,14 @@ name:'loader-vue',
 .loader {
   border: 16px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 16px solid #aedb34;
+  border-top: 16px solid #FFA500;
   width: 120px;
   height: 120px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
-  margin-top: 20%;
-  margin-left: 40%;
-
+  margin-top: calc( 50vh - 60px );
+  margin-left:  calc( 50vw - 60px );
+  
 }
 .overlay{
     width:100%;

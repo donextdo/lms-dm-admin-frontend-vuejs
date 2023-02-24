@@ -199,7 +199,7 @@ export default {
   },
   created() {
     this.get_countries();
-    this.get_subjects();z
+    this.get_subjects();
   },
   methods: {
     async get_countries() {

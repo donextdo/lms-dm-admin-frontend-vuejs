@@ -13,11 +13,11 @@
             <div v-else style="position:relative">
                <div v-if="full" class="form-control griditfull"  @click="shift">
                  <div v-if="initial" class="item" >{{initial}}</div>
-                 <div ref="img" class="item">&#9660;</div>
+                 <div ref="img" class="item-img">&#9660;</div>
                </div> 
                <div v-else class="form-control gridit"  @click="shift">
                  <div v-if="initial" class="item" >{{initial}}</div>
-                 <div ref="img" class="item">&#9660;</div>
+                 <div ref="img" class="item-img">&#9660;</div>
                </div> 
                <div v-if="user" ref="outer" class="outer">
                   <div v-for="(item, index) in items" :key="index"
@@ -90,7 +90,7 @@
     {
       this.$refs.outer.style.display='none'
       this.$refs.img.removeAttribute("class", "rotated-image");
-      this.$refs.img.setAttribute("class", "item");
+      this.$refs.img.setAttribute("class", "item-img");
 
 
 
@@ -119,7 +119,7 @@
     background-color:#FEF3EC;
     height:45px;
     color:rgba(100,100,100,0.5);
-    padding-left:3%;
+    padding-left:13px;
     font-size: 12px !important;
     border-radius: var(--brd,5px);
     cursor: pointer;
@@ -133,7 +133,7 @@
 }
 .griditfull{
   display: grid;
-  grid-template-columns:88% 10%; 
+  grid-template-columns:89% 11%; 
 }
 .label {
     font-size: 12px !important;
@@ -163,6 +163,11 @@
       font-size: 12px;
       padding-top:12px;
       opacity: 0.5;
+   }
+   .item-img{
+      font-size: 12px;
+      padding-top:12px;
+     color:#FFA500;
    }
    .outer{
       position:absolute; 

@@ -21,7 +21,7 @@
       transition="scroll-x-reverse-transition"
     >{{errormsg}}</v-alert>
     
-        <v-card :height="laptop ? '600px' : '870px'" :width="laptop ? '700px' : '620px'" class="d-flex flex-column align-center card" >
+        <v-card :height="laptop ? '640px' : '870px'" :width="laptop ? '600px' : '520px'" class="d-flex flex-column align-center card" >
 
           <h4 class="title">New Registration</h4>
           <div class="rowsingle">
@@ -69,8 +69,8 @@
              <div class="line"></div>
           </div>     
        
-          <div class="rowsingle" >
-              <div class=" form-control" >
+          <div class="d-flex my-10" >
+              <div class=" form-control mr-6" >
                 <ModelTextInputVue v-if="classes"
                 :initialValue="temporyClass ? temporyClass : classes.class1[0]"
                 type="select" :label="'Select Batch'" :items="classes.class1" 
@@ -78,9 +78,8 @@
                 
                 />
               </div>
-          </div>
-         <div class="rowsingle" >      
-              <div class=" form-control" >
+         
+              <div class=" form-control ml-6" >
                 <ModelTextInputVue placeholder="Reason"
                 type="text" label="Mention reason if student is rejected" :modelValue="member.reason" @update:modelValue="newValue => member.contact_no = newValue" 
                 />
@@ -89,14 +88,10 @@
 
             
 
-          <div style="margin-top:10px" class="rows " >
-            <div class="col text-right">
-              <ButtonVue   style="width:max-content;background-color:transparent;border:3px solid #ffa500;" text='Decline'/>
-            </div>
+          <div style="margin-top:10px" class="d-flex mt-6" >
+              <ButtonVue   style="width:max-content;background-color:transparent;margin-right:5px; border:3px solid #ffa500;" text='Decline'/>
             
-            <div class="col text-left">
-            <ButtonVue @click="accept" text="Accept" />
-            </div>
+            <ButtonVue @click="accept" style="margin-left:5px;" text="Accept" />
 
 
 
@@ -349,7 +344,7 @@
       font-size: 14px;
     }
     .para{
-        opacity: 0.5;
+        opacity: 0.9;
         color:#251605;
         margin-top:20px;  
         margin-bottom: 0;

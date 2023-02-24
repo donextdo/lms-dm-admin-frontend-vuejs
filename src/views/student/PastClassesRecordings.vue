@@ -1,14 +1,14 @@
 <template>
   <div>
   <div class="rowws">
-    <h2 style="margin-left:3%; margin-top:3%;">This month</h2>
+    <h2 style="font-size: large; margin-left:3%; margin-top:3%;">This month</h2>
     <div v-if="currentMonth" class="gridd" >
       <RecordingCardVue v-for="(item, key) in currentMonth" :item="item" :key="key"/>
     </div>  
 
     </div>
     <div v-if="previousMonth" class="rowws">
-    <h2 style=" margin-left:3%; margin-top:3%;">Previous  month</h2>
+    <h2 style="font-size: large; margin-left:3%; margin-top:3%;">Previous  month</h2>
     <div class="gridd">
       <RecordingCardVue v-for="(item, key) in previousMonth" :item="item" :key="key"/>
     </div>

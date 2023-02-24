@@ -41,7 +41,7 @@
                </div>
                <div v-else ref="outer" class="outer">
                   <div v-for="(item, index) in items" :key="index"
-                  @click="apply(item)"  class="rows rows-select"><div class="rowtext">{{item.name}}</div></div>   
+                  @click="apply(item)"  class="rows rows-select"><div>{{item.name}}</div></div>   
                </div>
           </div>
            <!---->
@@ -310,6 +310,7 @@ export default {
 .outer{
   background-color: var(--bgcol, white);
       position:absolute; 
+      font-size:13px;
       border-left:1px solid white;
       border-right:1px solid white ;
        border-bottom: 1px solid white; 
@@ -317,7 +318,7 @@ export default {
        display:none;
        width:100%;
        max-height:230px;
-       overflow: auto;
+       overflow-x:none;
   margin-bottom: 3%;
   margin-left: 14px;
   padding-left: 0px;
@@ -356,12 +357,18 @@ input:focus {
 .rows-select:hover{
   background-color:#FFA500;
   color: white;
-  margin:none;
+  width:103%;
+  margin:0;
   padding:none;
   cursor: pointer;
 
 }
+.rows-select:hover> div{
+ 
+  padding-left:3%;
+  cursor: pointer;
 
+}
 .rotated::after {
   transform: rotate(180deg);
 }
@@ -374,7 +381,8 @@ input:focus {
 }
 .item{
       color:black;
-      padding-top:6px;
+      padding-top:10px;
+      font-size:13px;
    }
 .c2 {
   opacity: 0.5;
