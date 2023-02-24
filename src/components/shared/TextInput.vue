@@ -141,10 +141,6 @@
 
 export default {
   mounted() {
-    window.addEventListener('changed-localstorage-changed', (event) => {
-    this.changed = event.detail.storage;
-    alert(this.changed)
-  });
     this.initialValue
       ? this.user
         ? (this.initial = this.initialValue.user.name)
@@ -157,7 +153,6 @@ export default {
   data() {
     return {
       initial: null,
-      changed:null
     };
   },
   props: {
@@ -210,6 +205,11 @@ export default {
       type: Object,
       default: null,
     },
+    changedOr:{
+      type:Number,
+      default:0,
+    }
+    
   },
   methods:{
     shift(){
@@ -229,6 +229,11 @@ export default {
 
     } 
    },
+   hide(){
+      this.$refs.outer.style.display='none'
+      this.$refs.img.removeAttribute("class", "rotated-image");
+      this.$refs.img.setAttribute("class", "item");
+   },
    apply(item)
    {
      this.shift() 
@@ -236,19 +241,16 @@ export default {
      this.$emit('update:modelValue', item.id)
    },
   },
-  computed: {
-    localStorageValue() {
-      // Access the localStorage value
-      return sessionStorage.getItem('change');
-    }
-  },
-watch: {
-  localStorageValue(newValue) {alert()
-      console.log(newValue)
-        // do something
-        this.shift()
-    }
-}
+
+  watch: {
+    changedOr: {
+      immediate:true,
+          handler(){     
+          },
+          deep: true
+        }
+      },
+
 };
 </script>
 <style scoped>

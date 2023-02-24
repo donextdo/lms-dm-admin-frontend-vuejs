@@ -82,6 +82,7 @@
             label="Country"
             parent="page"
             type="select"
+            :changedOr="changedOr"
             :initialValue="countries.countries[0]"
             :items="countries.countries"
             :modelValue="user.country_id"
@@ -172,6 +173,7 @@ export default {
   },
   data() {
     return {
+      changedOr:0,
       check: false,
       errormsg: null,
       countries: {},
@@ -197,7 +199,7 @@ export default {
   },
   created() {
     this.get_countries();
-    this.get_subjects();
+    this.get_subjects();z
   },
   methods: {
     async get_countries() {
@@ -302,6 +304,7 @@ export default {
 
 
 };
+
 </script>
 
 <style scoped>

@@ -15,6 +15,7 @@ export default {
     return {};
   },
   created() {
+    
     this.setTokenOnRefresh()
   },
   methods: {
@@ -28,19 +29,7 @@ export default {
   },
 };
 
-// Add a click event listener to the document
-document.addEventListener('click', function(event) {
-if(event.target.tagName!=='INPUT'){
-  if(sessionStorage.getItem('change'))
-  {
-    sessionStorage.setItem('change',!sessionStorage.getItem('change'))
-  }
- else{
-   sessionStorage.setItem('change',true)
 
-    }
-}
-});
 </script>
 
 <style>
