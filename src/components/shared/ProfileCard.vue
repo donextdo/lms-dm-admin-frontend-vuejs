@@ -1,7 +1,11 @@
 <template>
     <div class="overlay">
     
-        <v-card :height="laptop ? '600px' : '1062px'" :width="laptop ? '400px' : '642px'" class="d-flex flex-column align-center card">
+
+        <!-- <v-card :height="laptop ? '600px' : '1062px'" :width="laptop ? '400px' : '642px'" class="d-flex flex-column align-center card"> -->
+
+        <v-card :height="laptop ? '630px' : '1062px'" :width="laptop ? '380px' : '642px'" class="d-flex flex-column align-center card">
+
 
             <div style=" display: flex;justify-content: center; align-items: center;" class="avatar">
                <!--<v-img :src="require(`@/assets/${info.profile}.png`)">></v-img>--> 

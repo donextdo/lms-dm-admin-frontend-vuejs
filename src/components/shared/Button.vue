@@ -35,13 +35,13 @@
     style="color: red"
     color="transparent"
     :width="laptop ? '100px' : '142px'"
-    :height="laptop ? '40px' : '45px'"
+    :height="laptop ? '40px' : '55px'"
     elevation="0"
     class="btn rounded-lg"
     @click="click"
     ><p
       style="
-        padding-bottom: 3px;
+        padding-top: 10px;
         border-bottom-width: 1px;
         border-bottom-style: solid;
       "
@@ -79,7 +79,7 @@ export default {
 </script>
 <style scoped>
 .btn {
-  font-size: 16px;
+  font-size: 13px !important;
   text-transform: capitalize;
   font-weight: bold;
 }

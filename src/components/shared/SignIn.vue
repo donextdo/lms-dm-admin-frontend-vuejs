@@ -62,7 +62,7 @@
     </div>
 
     <v-btn
-      :width="laptop ? '520px' : '510px'"
+      :width="laptop ? '525px' : '510px'"
       color="#ffa500"
       :height="laptop ? '55px' : '62px'"
       elevation="0"
@@ -200,7 +200,7 @@ export default {
   font-size: 18px !important;
   text-transform: capitalize;
   font-weight: 800 !important;
-  margin-left: 20px;
+  margin-left: 13px !important;
 }
 .sing-in {
   margin-top: auto;
