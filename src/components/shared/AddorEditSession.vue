@@ -242,10 +242,10 @@ methods:{
                     var today=new Date()
                     if(Date.parse(session.date+' '+session.time) > today)
                     {
-                    this.upcoming.push(session);
+                    this.upcoming?.push(session);
                     }else 
                     {
-                    this.past.push(session);
+                    this.past?.push(session);
                     }
 
                 })
@@ -253,9 +253,9 @@ methods:{
 
                 upcomingSession.commit('setUpcomingSession',this.upcoming)
                 pastSession.commit('setPastSession',this.past)
-                studentSession.commit('setStudentSession',this.item.students)
-                tutorSession.commit('setTutorSession',this.item.tutor.user.name)
-                sessionStorage.setItem('sessionId',this.item.session)
+                studentSession.commit('setStudentSession',this.item?.students)
+                tutorSession.commit('setTutorSession',this.item?.tutor.user.name)
+                sessionStorage.setItem('sessionId',this.item?.session)
           
         
         },

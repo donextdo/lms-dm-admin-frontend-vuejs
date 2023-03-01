@@ -292,7 +292,7 @@ export default {
     };
   },
 
-  created() {
+  mounted() {
     window.addEventListener("resize", this.checkScreen);
     this.checkScreen();
     this.get_subjects();
@@ -303,7 +303,7 @@ export default {
     }
     if (this.editMode) {
       this.setInfo();
-      this.toLocalTime();
+      // this.toLocalTime();
     }
   },
   watch: {
@@ -363,7 +363,7 @@ export default {
     },
 
     setCurrency() {
-      this.countries.countries.filter((country) => {
+      this.countries?.countries?.filter((country) => {
         if (country.id == this.member.country_id) {
           this.currency = country.currency;
         }

@@ -10,7 +10,7 @@
     <div class="main-content d-flex align-center">
       <v-avatar :size="laptop ? '40px' : '60px'">
         <!--    <v-img :src="require(`@/assets/${item.profile}.png`)"></v-img>-->
-        <avatarVue :char="item.user.name[0]" />
+        <avatarVue :char="item.user?.name[0]" />
       </v-avatar>
       <div class="meta d-flex flex-column justify-center">
         <h4 class="id">
@@ -22,7 +22,7 @@
               : item.id
           }}
         </h4>
-        <h4 class="name">{{ item.user.name }}</h4>
+        <h4 class="name">{{ item.user?.name }}</h4>
       </div>
     </div>
 
@@ -33,14 +33,14 @@
 
     <div class="grade" v-show="type === 'student'">
       <p v-if="type === 'student'" class="column-text">
-        {{ item.grade[0].name }}
+        {{ item.grade[0]?.name }}
       </p>
     </div>
 
     <div class="subject">
-      <p v-if="type === 'tutor'" class="column-text">{{ item.subject.name }}</p>
+      <p v-if="type === 'tutor'" class="column-text">{{ item.subject?.name }}</p>
       <p v-if="type === 'student'" class="column-text">
-        {{ item.subject[0].name }}
+        {{ item.subject[0]?.name }}
       </p>
     </div>
 
@@ -48,11 +48,11 @@
       <div
         v-if="type == 'student' && userType == 1"
         class="link link-icon"
-        @click="shift(item.id, item.status, class_id)"
+        @click="shift(item.id, item?.status, class_id)"
       >
         <svg
           v-if="
-            (!Ssession && item.status == 'blocked') ||
+            (!Ssession && item?.status == 'blocked') ||
             (Ssession && itemStatus == 0)
           "
           width="16"
@@ -68,7 +68,7 @@
         </svg>
         <svg
           v-else-if="
-            (!Ssession && item.status == 'active') ||
+            (!Ssession && item?.status == 'active') ||
             (Ssession && itemStatus == 1)
           "
           xmlns="http://www.w3.org/2000/svg"
@@ -210,7 +210,9 @@ export default {
     },
     async getStatus() {
       this.userType == 1 ? (this.user = "admin") : (this.user = "tutor");
-      const { data } = await axios.get(
+      if(this.class_id) 
+       {
+        const { data } = await axios.get(
         this.$hostname +
           "/api/" +
           this.user +
@@ -219,7 +221,10 @@ export default {
           "/" +
           this.item.id
       );
-      this.itemStatus = data.data.status;
+      this.itemStatus = data.data?.status
+
+       }
+      
     },
   },
 };

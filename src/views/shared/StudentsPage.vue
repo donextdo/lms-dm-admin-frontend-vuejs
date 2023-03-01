@@ -157,6 +157,7 @@ export default {
               }
           },
       async  get_students() {
+        this.loader=true
           if(sessionStorage.getItem('role')==1)
           {
             this.userType='admin'
@@ -170,10 +171,13 @@ export default {
                     if (response.status == 200) {
                         this.students = response.data.data;
                     }
+                    this.loader=false
 
                 })
                 .catch(error => {
                     console.log(error);
+                    this.loader=false
+
                 });
         },
         showDeleteDialog(name,id) {

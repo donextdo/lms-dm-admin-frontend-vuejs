@@ -55,7 +55,9 @@ data() {
                 notes:null,
             }),
             laptop:null,
-            fileURL:null
+            fileURL:null,
+            proxyUrl:null,
+            url:null,
           }
 },
 
@@ -89,8 +91,9 @@ methods:{
             this.getNotes()
           },
          async getNotes(){
-               const {data}= await axios.get(this.$hostname+'/api/getSessionNotes/'+this.session.id)
+               const {data}= await axios({url:this.$hostname+'/api/getSessionNotes/'+this.session.id,method:'get',responseType:'blob'})
                this.fileURL = data
+                this.fileURL = window.URL.createObjectURL(new Blob([ this.fileURL]));
           }
 }
 }

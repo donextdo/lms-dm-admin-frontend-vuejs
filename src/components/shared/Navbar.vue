@@ -5,14 +5,18 @@
 
     <h2
       class="title"
-      v-if="title != 'Class' && title != 'Profile' && title != 'pastRecordings'"
+      v-if="title != 'Class' && title != 'Profile' && title != 'pastRecordings' && title!='SessionDetail' && title!='Session' && title!=='EditSession' " 
     >
       {{ title.replace(/([A-Z])/g, " $1").trim() }}
     </h2>
     <h2
       class="title"
-      v-else-if="title == 'Class'"
-      :style="this.$route.matched[2].name != 'ClassPage' && 'cursor:pointer'"
+      v-else-if="title == 'Class'|| title=='Session' && this.role==2 ||  this.role==2 &&
+        this.$route.matched[1]?.name == 'SessionDetail'
+        ||  this.role==2 &&
+        this.$route.matched[1]?.name == 'EditSession'
+        "
+      :style="this.$route.matched[2]?.name != 'ClassPage' && 'cursor:pointer'"
       @click="shiftBack"
     >
       Classes
@@ -21,8 +25,16 @@
     <div
       class="classTitle"
       v-if="
-        this.$route.matched[1].name == 'Class' &&
-        this.$route.matched[2].name == 'Session'
+        this.role==1 &&
+        this.$route.matched[1]?.name == 'Class' &&
+        this.$route.matched[2]?.name == 'Session'
+        ||
+        this.role==2 &&
+        this.$route.matched[1]?.name == 'Session' &&
+        this.$route.matched[2]?.name == 'AllSessions'
+        ||
+        this.$route.matched[2]?.name == 'StudentSession' 
+
       "
     >
       <pre>    >    {{ className.getters.topic }} </pre>
@@ -30,17 +42,23 @@
     <div
       class="classTitle"
       v-if="
-        this.$route.matched[1].name == 'Class' &&
-        this.$route.matched[2].name == 'SessionDetail'
+        this.$route.matched[1]?.name == 'Class' &&
+        this.$route.matched[2]?.name == 'SessionDetail'
+        ||
+        role==2 &&
+        this.$route.matched[1]?.name == 'SessionDetail' ||
+        role==2 &&
+        this.$route.matched[1]?.name == 'EditSession'
       "
     >
+    
       <pre>  <span style="cursor:pointer"  @click="$router.go(-1)"  >  >    {{className.getters.topic}}</span> >    Session Detail </pre>
     </div>
     <div
       class="classTitle"
       v-if="
-        this.$route.matched[1].name == 'Class' &&
-        this.$route.matched[2].name == 'EditSession'
+        this.$route.matched[1]?.name == 'Class' &&
+        this.$route.matched[2]?.name == 'EditSession'
       "
     >
       <pre>  <span style="cursor:pointer"  @click="$router.go(-1)" >  >    {{className.getters.topic}}</span>   >  Edit  Session </pre>
@@ -48,8 +66,8 @@
     <div
       class="classTitle"
       v-if="
-        this.$route.matched[1].name == 'Class' &&
-        this.$route.matched[2].name == 'NewSession'
+        this.$route.matched[1]?.name == 'Class' &&
+        this.$route.matched[2]?.name == 'NewSession'
       "
     >
       <pre> <span style="cursor:pointer"  @click="$router.go(-1)" >   >    {{className.getters.topic}} </span>  >   New Session</pre>
@@ -57,8 +75,8 @@
     <div
       class="classTitle"
       v-if="
-        this.$route.matched[1].name == 'Class' &&
-        this.$route.matched[2].name == 'AddRecordingLinkSession'
+        this.$route.matched[1]?.name == 'Class' &&
+        this.$route.matched[2]?.name == 'AddRecordingLinkSession'
       "
       style="cursor: pointer"
       @click="$router.go(-1)"
