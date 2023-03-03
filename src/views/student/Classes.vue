@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import {toLocal} from './../../time'
 import loader from '@/components/shared/loader.vue';
 import axios from 'axios';
 import ClassCardVue from './ClassCard.vue';
@@ -35,6 +36,9 @@ export default {
                     if (response.status == 200) {
                       this.loader=false
                         this.sessions=response.data.data.sessions;
+                        this.sessions.forEach(session=>{
+                          session.time=toLocal(session.time)
+                        })
                     }
 
                 })

@@ -47,7 +47,6 @@ export const upcomingSession = new Vuex.Store({
     setUpcomingSession(state,session){
       state.session = session;
       sessionStorage.setItem('upcoming',JSON.stringify(session))
-
     },
     
   },

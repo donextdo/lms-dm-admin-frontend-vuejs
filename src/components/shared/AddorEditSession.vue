@@ -61,6 +61,7 @@ import ButtonVue from '@/components/shared/Button.vue';
 import TextInputVue from './TextInput.vue';
 import {singleSession } from '../../store/store.js'
 import { Form, } from 'vform';
+import { toStandard,toLocal } from '@/time';
   window.Form = Form;
 
 export default {
@@ -85,8 +86,9 @@ data() {
             error:null,
             success:null,
             sessionData: new FormData(),
-            all:null
-
+            all:null,
+            upcoming:[],
+          past:[],
   }
 },
 
@@ -161,6 +163,7 @@ methods:{
            async  editSession()
           {
 
+            this.sessionData.append('time',toStandard(this.session.time))
            this.session.class1_id = sessionStorage.getItem('class_id')
             await axios
                 .post(this.$hostname+"/api/"+this.userType+"/session/"+this.sessionId,this.sessionData)
@@ -184,6 +187,8 @@ methods:{
           },
           async addSession()
           {
+            
+            this.sessionData.append('time',toStandard(this.session.time))
             this.session.class1_id = sessionStorage.getItem('class_id')
             await axios
                 .post(this.$hostname+"/api/"+this.userType+"/session",this.sessionData)
@@ -239,6 +244,7 @@ methods:{
                 await this.getSessions(sessionStorage.getItem('class_id'));
                 console.log(this.all)               
                 this.all.forEach(session => {
+                  session.time=toLocal(session.time)
                     var today=new Date()
                     if(Date.parse(session.date+' '+session.time) > today)
                     {

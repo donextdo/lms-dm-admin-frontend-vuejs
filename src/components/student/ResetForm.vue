@@ -69,7 +69,7 @@
       user: new Form({
                 //user oject create
                 password: "",
-                comfirm: "",
+                password_confirmation: "",
             }),
     
         items: ["Sri Lanka", "India", "Australia", "England"],
@@ -84,7 +84,11 @@
     },
     methods:{
       async reset(){
-        this.loader=true
+        if(this.user.password == this.user.password_confirmation && this.user.password.length > 8 )
+        {
+          this.loader=true
+
+      
       await  this.user.post(this.$hostname+"/api/resetPassword")
                   .then(response => {
                       if (response.status == 200) {
@@ -97,6 +101,7 @@
                       }
                   })
                   .catch(error => {
+                      this.loader=false
                       console.log(error);
                       this.error = true
                       if(error.response.status==500)
@@ -107,12 +112,18 @@
                       {
                         this.errormsg=Object.values(JSON.parse(error.request.response).data)[0][0]
                       }
-                      this.loader=false
                       setTimeout(() => {
                         this.error = false
                       }, 2000)
                   });
+      }else{
+        this.error = true
+        this.errormsg='Enter valid Password'
+        setTimeout(() => {
+                        this.error = false
+                      }, 2000)
       }
+    }
     }
   };
   </script>

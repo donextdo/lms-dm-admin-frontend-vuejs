@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import {toLocal} from './../../time'
 import loader from '@/components/shared/loader.vue';
 import RecordingCard from './RecordingCard.vue';
 import MessagesVue from './Messages.vue';
@@ -64,6 +65,15 @@ export default {
             this.recordings =data.data.recordings.sessions
             this.classes =data.data.classes.sessions
             this.messages=data.data.messages.inbox
+            this.recordings.forEach(session=>{
+              session.time=toLocal(session.time)
+            })
+            this.classes.forEach(session=>{
+              session.time=toLocal(session.time)
+            })
+            this.recordings.forEach(session=>{
+              session.time=toLocal(session.time)
+            })
             this.loader=false
           }
 },

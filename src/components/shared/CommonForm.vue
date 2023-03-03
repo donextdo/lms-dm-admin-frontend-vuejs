@@ -212,6 +212,7 @@
 </template>
 
 <script>
+import {toStandard,toLocal} from "./../../time"
 import axios from "axios";
 import ModelTextInputVue from "./ModelTextInput.vue";
 import { Form } from "vform";
@@ -287,7 +288,6 @@ export default {
         day_of_week: "1",
         price: "",
         time: "",
-        timeZone: "",
       }),
     };
   },
@@ -316,20 +316,6 @@ export default {
     },
   },
   methods: {
-    setTimeReal() {
-      let time = this.member.time;
-      let str = time.substring(time.length - 2, time.length);
-      if (str == "PM") {
-        time = time.substring(0, time.length - 2) + 12;
-      }
-      let day = new Date("1111-11-11 " + time + ":00");
-      this.member.time = day.toISOString();
-    },
-    toLocalTime() {
-      let day = new Date(this.member.time).toLocaleDateString();
-      let time = day.getTime();
-      console.log(time);
-    },
     setInfo() {
       if (this.type !== "class") {
         this.member.name = this.info.user ? this.info.user.name : null;
@@ -356,7 +342,9 @@ export default {
         this.member.grade_id = this.info.grade;
         // this.tempory_grade_id=this.info.grade.id
         this.member.price = this.info.price;
-        this.member.time = this.info.session.time;
+        
+        this.member.time = toLocal(this.info.session.time)
+        alert(this.member.time)
         this.temporyDate = this.day_of_week[this.info.day_of_week - 1];
         this.member.day_of_week = this.day_of_week[this.info.day_of_week - 1];
       }
@@ -405,7 +393,10 @@ export default {
       }
     },
     async add_member() {
-      //  this.setTimeReal()
+      if(this.member.time.length){     
+         
+         this.member.time= toStandard(this.member.time)
+     }
       this.validate();
       await this.member
         .post(this.$hostname + "/api/admin/" + this.type)

@@ -184,12 +184,13 @@ export default {
   float: left;
   position: absolute;
   margin-left: 10%;
-  margin-top: 3%;
+  margin-top: 2.5%;
 }
 .title {
   font-size: 25px !important;
   font-weight: 900 !important;
   line-height: 1.5;
+  margin-top: 2.5%;
 }
 
 .admin-data {

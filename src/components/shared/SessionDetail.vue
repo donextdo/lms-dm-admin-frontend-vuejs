@@ -16,7 +16,7 @@
         </div>
         <div class="col-4 "><br>
           <a :href="fileURL" download="file.zip">
-           Download PDF
+           Download ZIP
      </a>
         </div>
     </div>

@@ -175,7 +175,6 @@
 
 <script>
 import loader from "@/components/shared/loader.vue";
-import utilizeTime from "../../time";
 import Class from "@/components/shared/Class.vue";
 import Request from "@/components/admin/Request.vue";
 import StudentRequestProcess from "@/components/shared/StudentRequestProcess.vue";
@@ -214,7 +213,6 @@ export default {
     window.addEventListener("resize", this.checkScreen);
     this.checkScreen();
     this.dashboard_data();
-    utilizeTime("9:30PM");
   },
   methods: {
     checkScreen() {
