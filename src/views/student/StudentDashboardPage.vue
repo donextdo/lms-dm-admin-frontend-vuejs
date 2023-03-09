@@ -71,9 +71,6 @@ export default {
             this.classes.forEach(session=>{
               session.time=toLocal(session.time)
             })
-            this.recordings.forEach(session=>{
-              session.time=toLocal(session.time)
-            })
             this.loader=false
           }
 },

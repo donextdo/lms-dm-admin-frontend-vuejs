@@ -31,7 +31,7 @@
 
    <svg style="position:relative; left:12px;bottom:18px; " width="5" height="6" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
  <path d="M3.56105 3.89H1.45605V1.22378C1.45605 0.871548 1.17056 0.585938 0.818202 0.585938C0.465969 0.585938 0.180359 0.87142 0.180359 1.22378V4.52765C0.180359 4.87988 0.465841 5.16549 0.818202 5.16549H3.56105C3.91328 5.16549 4.19889 4.88001 4.19889 4.52765C4.19889 4.17541 3.91341 3.88993 3.56105 3.88993V3.89Z" fill="#251605"/>
- </svg><p style="position:relative; bottom:39px;left:40px;">{{item.time}}</p>
+ </svg><p style="position:relative; bottom:39px;left:40px;">{{time}}</p>
  </div>  
  <div style="padding-top:30px;padding-left:15px; margin-top:25px;margin-left:10px;position:absolute;top:5px; left:86px">
    <div class="circle" style="position:relative;left:95px;" ></div>
@@ -67,14 +67,23 @@
 </template>
 
 <script>
+import { toLocal } from '@/time';
 export default {
   name:'recording-card-vue',
   props:['item'],
   data(){return{
+    time:this.item.time,
     laptop:null,
 
   }
 
+
+  },
+  created(){
+    if( this.$route.matched[1]?.name=='pastRecordings'){
+      this.time= toLocal(this.item.time)
+
+    }
   }
 }
 </script>
