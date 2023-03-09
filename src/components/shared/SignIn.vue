@@ -40,8 +40,10 @@
         @update:modelValue="(newValue) => (user.password = newValue)"
       />
     </div>
-    
-    <div class="d-flex flex-row justify-content-between align-left form-control">
+
+    <div
+      class="d-flex flex-row justify-content-between align-left form-control"
+    >
       <v-checkbox
         dense
         v-model="user.remember"
@@ -149,7 +151,8 @@ export default {
         });
     },
     signup() {
-      window.location.href = "student";
+      window.location.href = sessionStorage.getItem("url") + "/student";
+      console.log(sessionStorage.getItem('token'));
     },
   },
 };
