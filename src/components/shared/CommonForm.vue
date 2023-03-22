@@ -181,6 +181,8 @@
 
       <div class="btn-container d-flex align-center" v-if="editMode">
         <ButtonVue text="Save Changes" @click="update_member()" />
+        <ButtonVue v-if="type=='tutor'" style="height:100%" :transparent="true" text="Delete Tutor" @click="delete_member()" />
+
       </div>
       <ButtonVue
         v-else
@@ -344,7 +346,6 @@ export default {
         this.member.price = this.info.price;
         
         this.member.time = toLocal(this.info.session.time)
-        alert(this.member.time)
         this.temporyDate = this.day_of_week[this.info.day_of_week - 1];
         this.member.day_of_week = this.day_of_week[this.info.day_of_week - 1];
       }
@@ -391,6 +392,26 @@ export default {
       if (this.member.price) {
         this.member.price = parseFloat(this.member.price);
       }
+    },
+    async delete_member(){
+      await axios.delete(this.$hostname + "/api/admin/" + this.type + "/" + this.info.id)
+      .then((response)=>{
+        this.method='deleted'
+        this.success=true
+        this.close()
+        this.$emit("getTutors");
+        console.log(response)
+        setTimeout(() => {
+              this.success = false;
+            }, 2000);
+      }).catch((error)=>{
+        console.log(error)
+        this.errormsg="something went wrong"
+        this.error=true;
+        setTimeout(() => {
+              this.error = false;
+            }, 2000);
+      })
     },
     async add_member() {
       if(this.member.time.length){     

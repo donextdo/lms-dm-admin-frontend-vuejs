@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import {toLocal} from './../../time'
 import axios from 'axios'
 import {className,upcomingSession,pastSession,studentSession,tutorSession } from '../../store/store.js'
 export default {
@@ -73,6 +74,7 @@ export default {
                 className.commit('setClassName',this.item.title)    
                 console.log(this.all)               
                 this.all.forEach(session => {
+                    session.time=toLocal(session.time)
                     var today=new Date()
                     if(Date.parse(session.date+' '+session.time) > today)
                     {

@@ -20,7 +20,7 @@ Vue.use(VueRouter);
 Vue.prototype.$hostname = 'http://127.0.0.1:8000'
 sessionStorage.setItem('url',' http://localhost:8080')
 
-//  Vue.prototype.$hostname = 'https://thesupercarowner.com'
+//  Vue.prototype.$hostname = 'https://laravel.thesupercarowner.com'
 //  sessionStorage.setItem('url',' https://front.thesupercarowner.com')
 
 // const router = new VueRouter({

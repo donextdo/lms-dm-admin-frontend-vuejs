@@ -128,6 +128,8 @@ export default {
               "Authorization"
             ] = `Bearer ${response.data.data.token}`;
             sessionStorage.setItem("role", response.data.data.role_id);
+            sessionStorage.setItem("name", response.data.data.name);
+
             this.$router.push({ name: "DashboardView" });
           }
           this.user.reset(); //reset the form data after submit

@@ -10,7 +10,7 @@
             <path d="M12.0262 8.36839H9.5119V5.18374C9.5119 4.76302 9.1709 4.42188 8.75003 4.42188C8.3293 4.42188 7.98816 4.76287 7.98816 5.18374V9.13003C7.98816 9.55075 8.32915 9.8919 8.75003 9.8919H12.0262C12.4469 9.8919 12.7881 9.5509 12.7881 9.13003C12.7881 8.70931 12.4471 8.36832 12.0262 8.36832V8.36839Z" fill="#FE3F49"/>
             </svg>
 
-            <span>{{ upcomingClass.time }}</span>
+            <span>{{ time }}</span>
 
         </div>
 
@@ -22,6 +22,7 @@
   </template>
   
   <script>
+  import { toLocal } from '@/time'
   import axios from 'axios'
   export default {
       name: 'class-vue',
@@ -32,11 +33,13 @@
         return {
             laptop: null,
             classs:null,
+            time:null,
             type:true,
         }
       },
   
       created() {
+          this.time=toLocal(this.upcomingClass.time)
           window.addEventListener('resize', this.checkScreen)
           this.checkScreen()
           if(sessionStorage.getItem('role')==1)

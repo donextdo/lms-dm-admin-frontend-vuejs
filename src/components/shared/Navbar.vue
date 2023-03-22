@@ -111,7 +111,7 @@
         <v-img :src="require(`@/assets/${profile}.png`)"></v-img>
       </v-avatar>
 
-      <span>{{ name }} </span>
+      <span style="overflow: hidden;">{{ name }} </span>
     </router-link>
   </header>
 </template>
@@ -121,7 +121,7 @@ import { className } from "../../store/store.js";
 export default {
   name: "navbar-vue",
 
-  props: ["title", "name", "profile"],
+  props: ["title", "profile"],
 
   data() {
     return {
@@ -129,6 +129,7 @@ export default {
       className,
       role: sessionStorage.getItem("role"),
       laptop: null,
+      name:sessionStorage.getItem('name')
     };
   },
 
